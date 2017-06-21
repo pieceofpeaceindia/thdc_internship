@@ -2,7 +2,7 @@ $(document).ready(function(){
     console.log("ur document is ready");
     $("#addingevent").click(function(){
         console.log("i m adding event");
-        var dataString = 'action=addevent&'+$('#event_form').serializeArray();
+        var dataString = 'action=addevent&'+$('#event_form').serialize();
         var theme = $("#event_name").val();
         var date = $("#event_date").val();
         var venue = $("#event_venue").val();
@@ -16,21 +16,19 @@ $(document).ready(function(){
                 type: "POST",
                 url: "ajax.php",
                 data: dataString,
-                cache: false,
                 success: function(result){
-                    alert(result);
+                    console.log(result);
                     document.getElementById('event_name').value = '';
                     document.getElementById('event_date').value = '';
                     document.getElementById('event_venue').value = '';
                     }
             });
         }
-        return false;
     });
 
     $("#addition").click(function(){
         console.log("i m adding guest");
-        var dataString = 'action=addguest&'+$('#guest_form').serializeArray();
+        var dataString = 'action=addguest&'+$('#guest_form').serialize();
         var email = $("#email_guest").val();
         var name = $("#guest_name").val();
         var contact = $("#guest_contact_number").val();
@@ -44,38 +42,35 @@ $(document).ready(function(){
                 type: "POST",
                 url: "ajax.php",
                 data: dataString,
-                cache: false,
                 success: function(result){
-                    alert(result);
+                    console.log(result);
                     document.getElementById('email_guest').value = '';
                     document.getElementById('guest_name').value = '';
                     document.getElementById('guest_contact_number').value = '';
                     }
             });
         }
-        return false;
     });
 
     $("#rsvp").click(function(){
         console.log("under rsvp");
         var email = $("#email_guest").val();
-        var dataStringa = 'action=rsvp&' + $('#rsvp_form').serializeArray();
+        var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
         console.log(dataStringa);
         if(email==''){
-            alert("Please Fill All Fields");
+            alert("Please enter email");
         }
         else{
             $.ajax({
                 type: "POST",
                 url: "ajax.php",
                 data: dataStringa,
-                cache: false,
                 success: function(result){
+                    console.log(result);
                     document.getElementById('email_guest').value = '';
-                    alert(result);
-                    }
+                }
             });
         }
-        return false;
+    return false;    
     });
 });

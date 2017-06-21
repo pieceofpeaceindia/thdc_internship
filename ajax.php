@@ -1,22 +1,19 @@
 <?php
 	include "function.php";
-	if(isset($_post["action"])){
-			switch ($_post["action"]) {
+	if(isset($_POST["action"])){
+		switch ($_POST["action"]) {
 			case 'addevent':
-				$status=addaevent($_post["event_name"],$_post["event_date"],$_post["event_venue"]);
-				print json_encode($status);
+				print json_encode(addaevent($_POST["event_name"],$_POST["event_date"],$_POST["event_venue"]));
 				break;
 			case 'addguest':
-				$status= addaguest($_post["email_guest"],$_post["guest_name"],$_post["guest_contact_number"]);
-				print json_encode($status);
+				print json_encode(addaguest($_POST["email_guest"],$_POST["guest_name"],$_POST["guest_contact_number"]));
 				break;
 			case 'rsvp':
-				$status= updatedetails($_post["email_guest"]);
-				print json_encode($status);
-				break;	
+				 print json_encode(updatedetails($_POST["email_guest"]));
+				 break;
 			default:
 				echo "invalid";
 				break;
-			}
+		}
 	}
 ?>

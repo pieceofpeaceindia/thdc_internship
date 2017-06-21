@@ -9,8 +9,11 @@
 				print json_encode(addaguest($_POST["email_guest"],$_POST["guest_name"],$_POST["guest_contact_number"]));
 				break;
 			case 'rsvp':
-				 print json_encode(updatedetails($_POST["email_guest"]));
+				print json_encode(updatedetails($_POST["email_guest"]));
 				 break;
+			case 'forgot':	
+				print json_encode(forget_password($_POST["email_guest"],$_POST["guest_contact_number"])); 
+				break;
 			default:
 				echo "invalid";
 				break;

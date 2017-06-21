@@ -45,8 +45,8 @@
 		  echo $emailErr;
 		  die;
 		}
-		$sqla = "INSERT INTO guestdetails (email,guestname,phone,guestrespone) 
-				VALUES('$email_guest', '$guest_name', '$guest_contact_number','PENDING')";
+		$sqla = "INSERT INTO guestdetails (email,password,guestname,phone,guestrespone) 
+				VALUES('$email_guest','abc@123', '$guest_name', '$guest_contact_number','PENDING')";
 
 
 		if ($conna->query($sqla) === TRUE) {
@@ -61,7 +61,6 @@
 	
 
 	function updatedetails() {
-		
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
@@ -73,6 +72,7 @@
 		    die("Connection failed: " . $connb->connect_error);
 		}
 		$email_guest=@$_POST['email_guest'];
+		$password1=$_POST['guest_password'];
 		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
@@ -80,16 +80,15 @@
 		}
 		$q= "SELECT email,guestname
 			FROM guestdetails
-			WHERE email='$email_guest' ";
+			WHERE email='$email_guest' AND password='$password1' ";
 		$result=mysqli_query($connb,$q);
-		var_dump("hello");	
 		if (mysqli_num_rows($result)>0)  {
 			$sqlb = " UPDATE guestdetails
 			SET  guestrespone='CONFIRM'
 			WHERE email='$email_guest' ";	
 			if ($connb->query($sqlb) === TRUE) {
 				$row = $result->fetch_assoc();
-			   	echo "THANK YOU ".$row["guestname"]." FOR YOUR PRECIOUS TIME TO RESPONSE TO US";	
+			   	echo "THANK YOU FOR YOUR PRECIOUS TIME TO RESPONSE TO US";	
 			}else{
 						echo "Error: " . $sqlb . "<br>" . $connb->error;
 			}
@@ -97,5 +96,83 @@
 			echo "THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME";
 		}		
 		$connb->close();	
+	}
+
+	function forget_password() {
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+
+		$connb = new mysqli($servername, $username, $password, $dbname);
+		if ($connb->connect_error) 
+		{
+		    die("Connection failed: " . $connb->connect_error);
+		}
+		$email_guest=@$_POST['email_guest'];
+		$no=$_POST['guest_contact_number'];
+		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
+		  $emailErr = "Invalid email format"; 
+		  echo $emailErr;
+		  die;
+		}
+		$q= "SELECT email,phone
+			FROM guestdetails
+			WHERE email='$email_guest' AND phone='$no' ";
+		$result=mysqli_query($connb,$q);	
+		if (mysqli_num_rows($result)>0)  {
+			$sqlb = " UPDATE guestdetails
+			SET  guestrespone='CONFIRM'
+			WHERE email='$email_guest' ";	
+			if ($connb->query($sqlb) === TRUE) {
+				$row = $result->fetch_assoc();
+			   	echo "THANK YOU FOR YOUR PRECIOUS TIME TO RESPONSE TO US";	
+			}else{
+						echo "Error: " . $sqlb . "<br>" . $connb->error;
+			}
+		} else {
+			echo "THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME";
+		}		
+		$connb->close();	
+	}
+
+	function show_guest_details(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
+		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails";
+		$result = $conn->query($sql);
+		echo "<table class='table table-striped table-bordered'>";
+			echo "<thead>";
+				echo "<tr>";
+					echo "<th>"."Guest Name"."</th>";
+					echo "<th>"."Response."."</th>";
+				echo "</tr>";
+			echo "</thead>";
+			echo "<tbody>";
+			if ($result->num_rows > 0) 
+				{
+			    while($row = $result->fetch_assoc()) 
+			    	{
+			    	echo "<tr>";
+			    		echo "<td>";
+			    			echo $row["guestname"];
+			    		echo "</td>";
+			    		echo "<td>";
+			    			echo $row["guestrespone"];
+			    		echo "</td>";
+			    	echo "</tr>";
+			        }
+				} else {
+			    echo "No guest Till now";
+			}
+			$conn->close();
+			echo "</tbody>";
+		echo "</table>";
 	}
 ?>

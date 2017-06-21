@@ -55,10 +55,11 @@ $(document).ready(function(){
     $("#rsvp").click(function(){
         console.log("under rsvp");
         var email = $("#email_guest").val();
+        var password= $('#guest_password').val();
         var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
         console.log(dataStringa);
-        if(email==''){
-            alert("Please enter email");
+        if(email==''|| password==''){
+            alert("Please fill both Fields");
         }
         else{
             $.ajax({
@@ -68,6 +69,30 @@ $(document).ready(function(){
                 success: function(result){
                     console.log(result);
                     document.getElementById('email_guest').value = '';
+                }
+            });
+        }
+    return false;    
+    });
+
+    $("#forget_password").click(function(){
+        console.log("forgot_password");
+        var email = $("#email_guest").val();
+        var no= $('#guest_contact_number').val();
+        var dataStringa = 'action=forgot&' + $('#forgot_password_form').serialize();
+        console.log(dataStringa);
+        if(email==''|| no==''){
+            alert("Please fill both Fields");
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                url: "ajax.php",
+                data: dataStringa,
+                success: function(result){
+                    console.log(result);
+                    document.getElementById('email_guest').value = '';
+                    document.getElementById('guest_contact_number').value = '';
                 }
             });
         }

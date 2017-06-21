@@ -8,12 +8,13 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse bg-primary ">
+		<nav class="navbar navbar-inverse bg-primary">
         <span class="navbar-brand" style="text-align: center;">ADD YOUR RESPONSE FOR &quot;SOIREE&quot;</span>
     	</nav>
     	<center>
+    	<br>
     	<div class="row container">
-			<table class="table table-warning">
+			<table class="table bg-warning">
 				<?php
 					$details=array();
 					$servername = "localhost";
@@ -52,15 +53,15 @@
 				?>
 			</table>
 		</div>	
-		</center>
+		<br><br>
 		<div class="row container">
 			<div class="col-sm">
 				<form  method="POST" id="rsvp_form">
-					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address</em></strong></label>
+					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address :-</em></strong></label>
 	                <div class="col-12">
 	                    <input type="email" class="form-control" id="email_guest" placeholder="Enter email" name="email_guest">
 	                </div>
-	                <label for="password" class="col-8 col-sm col-form-label"><strong><em>Password</em></strong></label>
+	                <label for="password" class="col-8 col-sm col-form-label"><strong><em>Password :-</em></strong></label>
 	                <div class="col-12">
 	                    <input type="password" class="form-control" id="guest_password" placeholder="Enter password" name="guest_password">
 	                </div>
@@ -69,11 +70,13 @@
 	                <button type="submit" class="btn btn-success" name="select" value="dorsvp" id="rsvp">RSVP</button>
 				</form>
 			</div>			
-			&nbsp;
-			<div class="col-sm">
+			&nbsp;&nbsp;
+			<div class="col-6 col-sm">
+				<br>
 				<?php require_once "function.php"; show_guest_details(); ?>
 			</div>
 		</div>	
+		</center>
 	    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
             
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

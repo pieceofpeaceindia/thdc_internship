@@ -11,9 +11,10 @@
 		<nav class="navbar navbar-inverse bg-primary ">
         <span class="navbar-brand" style="text-align: center;">FORGET YOUR PASSWORD</span>
     	</nav>
+    	<br>
     	<center>
     	<div class="row container">
-			<table class="table table-warning">
+			<table class="table bg-warning">
 				<?php
 					$details=array();
 					$servername = "localhost";
@@ -56,20 +57,20 @@
 			<div class="col-sm">
 				<form  method="POST" id="forgot_password_form">
 					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address</em></strong></label>
-	                <div class="col-12">
+	                <div class="col-6 col-sm-4">
 	                    <input type="email" class="form-control" id="email_guest" placeholder="Enter email" name="email_guest">
 	                </div>
 	                <label for="phone no" class="col-8 col-sm col-form-label"><strong><em>Contact Number</em></strong></label>
-	                <div class="col-12">
+	                <div class="col-6 col-sm-4">
 	                    <input type="tel" class="form-control" id="guest_contact_number" placeholder="Enter you contact number" name="guest_contact_number">
 	                </div>
 	                <br>
 	                <button type="submit" class="btn btn-success" name="forget_password" id="forget_password">SUBMIT</button>
 				</form>
 			</div>			
-			&nbsp;
+			&nbsp;<!-- 
 			<div class="col-sm">	
-			</div>
+			</div> -->
 		</center>	
 		</div>	
 	    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

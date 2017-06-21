@@ -145,10 +145,10 @@
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		} 
-		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails";
+		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails LIMIT 6";
 		$result = $conn->query($sql);
 		echo "<table class='table table-striped table-bordered'>";
-			echo "<thead>";
+			echo "<thead class='bg-success'>";
 				echo "<tr>";
 					echo "<th>"."Guest Name"."</th>";
 					echo "<th>"."Response."."</th>";
@@ -159,7 +159,7 @@
 				{
 			    while($row = $result->fetch_assoc()) 
 			    	{
-			    	echo "<tr>";
+			    	echo "<tr class='text-primary'>";
 			    		echo "<td>";
 			    			echo $row["guestname"];
 			    		echo "</td>";

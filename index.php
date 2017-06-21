@@ -53,7 +53,7 @@
                 <br/><br/ >
                 <div class="container">
                     <h2 id="addguest">GUESTS</h2>
-                    <form  action="function.php" method="post" id="guest_form">     
+                    <form method="post" id="guest_form">     
                         <div class="form-group row">
                             <label for="Email" class="col-8 col-form-label">Email address</label>
                             <div class="col-12">
@@ -85,5 +85,5 @@
    
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="abc.js"></script>
+    <script src="main.js"></script>
 </html>

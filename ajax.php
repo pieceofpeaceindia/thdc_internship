@@ -1,5 +1,5 @@
 <?php
-	include "function.php";
+	require_once "function.php";
 	if(isset($_POST["action"])){
 		switch ($_POST["action"]) {
 			case 'addevent':

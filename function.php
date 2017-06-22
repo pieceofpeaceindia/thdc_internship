@@ -175,4 +175,36 @@
 			echo "</tbody>";
 		echo "</table>";
 	}
+
+	function apply(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+
+		$conna = new mysqli($servername, $username, $password, $dbname);
+		if ($conna->connect_error) 
+		{
+		    die("Connection failed: " . $conna->connect_error);
+		}
+		$eamil=@$_POST['apply_email'];
+		$name=$_POST['apply_name'];
+		$number=$_POST['apply_contact_number'];
+		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
+		  $emailErr = "Invalid email format"; 
+		  echo $emailErr;
+		  die;
+		}
+		$sqla = "INSERT INTO applyguests (apply_email,apply_name,apply_nnumber) 
+				VALUES('$email,'$name', '$number')";
+
+
+		if ($conna->query($sqla) === TRUE) {
+			$output="New record created successfully";
+		    echo $output;
+		}else{
+				echo "Error: " . $sqla . "<br>" . $conna->error;
+		    }
+		$conna->close();
+	}
 ?>

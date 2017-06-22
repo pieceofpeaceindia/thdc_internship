@@ -1,6 +1,9 @@
 $(document).ready(function(){
     console.log("ur document is ready");
     $("#addingevent").click(function(){
+        document.getElementById("validate_theme").innerHTML ='';
+        document.getElementById("validate_date").innerHTML ='';
+        document.getElementById("validate_venue").innerHTML ='';
         console.log("i m adding event");
         var dataString = 'action=addevent&'+$('#event_form').serialize();
         var theme = $("#event_name").val();
@@ -41,6 +44,9 @@ $(document).ready(function(){
     });
 
     $("#addition").click(function(){
+        document.getElementById("validate_name").innerHTML ='';
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById("validate_no").innerHTML ='';
         console.log("i m adding guest");
         var dataString = 'action=addguest&'+$('#guest_form').serialize();
         var email = $("#email_guest").val();
@@ -86,6 +92,8 @@ $(document).ready(function(){
     });
 
     $("#rsvp").click(function(){
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById("validate_pass").innerHTML ='';
         console.log("under rsvp");
         var email = $("#email_guest").val();
         var password= $('#guest_password').val();
@@ -145,5 +153,53 @@ $(document).ready(function(){
             });
         }
     return false;    
+    });
+
+    $("#addition").click(function(){
+        document.getElementById("validate_name").innerHTML ='';
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById("validate_no").innerHTML ='';
+        console.log("i m applying as guest");
+        var dataString = 'action=applyguest&'+$('#guest_form').serialize();
+        var email = $("#email_guest").val();
+        var name = $("#guest_name").val();
+        var contact = $("#guest_contact_number").val();
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        console.log(dataString);
+        if(name==''||email==''||contact==''){
+            document.getElementById("validate_name").innerHTML ="* input can not be empty";
+            document.getElementById("validate_email").innerHTML ="* input can not be empty";
+            document.getElementById("validate_no").innerHTML ="* input can not be empty";
+        } else{
+        if (name=='') {
+            document.getElementById("validate_name").innerHTML ="* input can not be empty";
+        }else{
+            if (email=='') {
+                document.getElementById("validate_email").innerHTML ="* input can not be empty";
+            }else{
+                if (contact=='') {
+                    document.getElementById("validate_no").innerHTML ="* input can not be empty";
+                }
+                else{
+                    if (!filter.test(email)) {
+                        document.getElementById("validate_email").innerHTML ="* must be valid email";
+                    }else{
+                            console.log("hello here i'm");
+                         $.ajax({
+                            type: "POST",
+                            url: "ajax.php",
+                            data: dataString,
+                            success: function(result){
+                                console.log(result);
+                                document.getElementById('email_guest').value = '';
+                                document.getElementById('guest_name').value = '';
+                                document.getElementById('guest_contact_number').value = '';
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        }
     });
 });

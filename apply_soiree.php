@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>RSVP</title>
+		<title>Apply for soiree</title>
 			<meta charset="UTF-8">
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,17 +58,17 @@
 			<div class="col-sm">
 				<form  method="POST" id="apply_form">
 					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address :-</em></strong></label>
-		                <div class="col-6 col-sm-4">
+		                <div class="col-6 col-sm-4 col-xs-6">
 		                    <input type="email" class="form-control" id="apply_email" placeholder="Enter email" name="apply_email">
 		                <p id="validate_email" class="text-danger"></p>
 		                </div>
 	                <label for="guestname" class="col-8 col-sm col-form-label">Name Of The Guest</label>
-	                    <div class="col-6 col-sm-4">
+	                    <div class="col-6 col-sm-4 col-xs-6">
 	                       <input type="text" class="form-control required" id="apply_name" placeholder="Your Name" name="apply_name">
 	                       <p id="validate_name" class="text-danger"></p>
 	                    </div>
 	                <label for="contact_number" class="col-8 col-sm col-form-label">Phone No.</label>
-	                    <div class="col-6 col-sm-4">
+	                    <div class="col-6 col-sm-4 col-xs-6">
 	                       <input type="number" class="form-control required" id="apply_contact_number" placeholder="Contact Number" name="apply_contact_number">
 	                       <p id="validate_no" class="text-danger"></p>
 	                    </div>

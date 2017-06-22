@@ -155,15 +155,15 @@ $(document).ready(function(){
     return false;    
     });
 
-    $("#addition").click(function(){
+    $("#register").click(function(){
         document.getElementById("validate_name").innerHTML ='';
         document.getElementById("validate_email").innerHTML ='';
         document.getElementById("validate_no").innerHTML ='';
         console.log("i m applying as guest");
-        var dataString = 'action=applyguest&'+$('#guest_form').serialize();
-        var email = $("#email_guest").val();
-        var name = $("#guest_name").val();
-        var contact = $("#guest_contact_number").val();
+        var dataString = 'action=applyguest&'+$('#apply_form').serialize();
+        var email = $("#apply_email").val();
+        var name = $("#apply_name").val();
+        var contact = $("#apply_contact_number").val();
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         console.log(dataString);
         if(name==''||email==''||contact==''){
@@ -190,10 +190,10 @@ $(document).ready(function(){
                             url: "ajax.php",
                             data: dataString,
                             success: function(result){
-                                console.log(result);
-                                document.getElementById('email_guest').value = '';
-                                document.getElementById('guest_name').value = '';
-                                document.getElementById('guest_contact_number').value = '';
+                                alert(result);
+                                document.getElementById('apply_email').value = '';
+                                document.getElementById('apply_name').value = '';
+                                document.getElementById('apply_contact_number').value = '';
                                 }
                             });
                         }

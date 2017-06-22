@@ -182,29 +182,27 @@
 		$password = "";
 		$dbname = "internrsvp";
 
-		$conna = new mysqli($servername, $username, $password, $dbname);
-		if ($conna->connect_error) 
+		$connd = new mysqli($servername, $username, $password, $dbname);
+		if ($connd->connect_error) 
 		{
-		    die("Connection failed: " . $conna->connect_error);
+		    die("Connection failed: " . $connd->connect_error);
 		}
-		$eamil=@$_POST['apply_email'];
+		$email=@$_POST['apply_email'];
 		$name=$_POST['apply_name'];
 		$number=$_POST['apply_contact_number'];
-		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
 		  die;
 		}
-		$sqla = "INSERT INTO applyguests (apply_email,apply_name,apply_nnumber) 
-				VALUES('$email,'$name', '$number')";
+		$sqlq= "INSERT INTO applyguests(apply_email,apply_name,apply_number) VALUES('$email','$name','$number')";
 
-
-		if ($conna->query($sqla) === TRUE) {
+		if ($connd->query($sqlq) === TRUE) {
 			$output="New record created successfully";
 		    echo $output;
 		}else{
-				echo "Error: " . $sqla . "<br>" . $conna->error;
+				echo "Error: " . $sqlq . "<br>" . $connd->error;
 		    }
-		$conna->close();
+		$connd->close();
 	}
 ?>

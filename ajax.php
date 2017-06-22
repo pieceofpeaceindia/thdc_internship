@@ -14,6 +14,8 @@
 			case 'forgot':	
 				print json_encode(forget_password($_POST["email_guest"],$_POST["guest_contact_number"])); 
 				break;
+			case 'applyguest':
+				print json_encode(apply($_POST["apply_email"],$_POST["apply_name"],$_POST["apply_contact_number"]));	
 			default:
 				echo "invalid";
 				break;

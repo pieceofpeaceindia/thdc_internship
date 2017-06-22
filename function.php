@@ -145,13 +145,13 @@
 		if ($conn->connect_error) {
 		    die("Connection failed: " . $conn->connect_error);
 		} 
-		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails LIMIT 6";
+		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails";
 		$result = $conn->query($sql);
-		echo "<table class='table table-striped table-bordered'>";
+		echo "<table class='table table-striped table-bordered' style='text-align:center'>";
 			echo "<thead class='bg-success'>";
 				echo "<tr>";
-					echo "<th>"."Guest Name"."</th>";
-					echo "<th>"."Response."."</th>";
+					echo "<th style='text-align:center'>"."Guest Name"."</th>";
+					echo "<th style='text-align:center'>"."Response."."</th>";
 				echo "</tr>";
 			echo "</thead>";
 			echo "<tbody>";

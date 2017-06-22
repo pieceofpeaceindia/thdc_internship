@@ -60,10 +60,12 @@
 					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address :-</em></strong></label>
 	                <div class="col-12">
 	                    <input type="email" class="form-control" id="email_guest" placeholder="Enter email" name="email_guest">
+	                <p id="validate_email" class="text-danger"></p>
 	                </div>
 	                <label for="password" class="col-8 col-sm col-form-label"><strong><em>Password :-</em></strong></label>
 	                <div class="col-12">
 	                    <input type="password" class="form-control" id="guest_password" placeholder="Enter password" name="guest_password">
+	                <p id="validate_pass" class="text-danger"></p>
 	                </div>
 	                <a href="forgotpassword.php" style="float:right; color:red;">Forgot Password?</a>
 	                <br>
@@ -71,7 +73,7 @@
 				</form>
 			</div>			
 			&nbsp;&nbsp;
-			<div class="col-6 col-sm">
+			<div class="col-sm">
 				<br>
 				<?php require_once "function.php"; show_guest_details(); ?>
 			</div>

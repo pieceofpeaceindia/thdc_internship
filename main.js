@@ -7,22 +7,36 @@ $(document).ready(function(){
         var date = $("#event_date").val();
         var venue = $("#event_venue").val();
         console.log(dataString);
-        if(theme==''||date==''||venue==''){
-            alert("Please Fill All Fields");
-        }
-        else{
-            console.log("hello here i'm");
-            $.ajax({
-                type: "POST",
-                url: "ajax.php",
-                data: dataString,
-                success: function(result){
-                    console.log(result);
-                    document.getElementById('event_name').value = '';
-                    document.getElementById('event_date').value = '';
-                    document.getElementById('event_venue').value = '';
+        if (theme==''&&date==''&&venue=='') {
+            document.getElementById("validate_theme").innerHTML ="* input can not be empty";
+            document.getElementById("validate_date").innerHTML ="* input can not be empty";
+            document.getElementById("validate_venue").innerHTML ="* input can not be empty";
+        } else{
+            if (theme=='') {
+                document.getElementById("validate_theme").innerHTML ="* input can not be empty";
+            }else{
+                if (date=='') {
+                    document.getElementById("validate_date").innerHTML ="* input can not be empty";
+                }else{
+                    if (venue=='') {
+                        document.getElementById("validate_venue").innerHTML ="* input can not be empty";
                     }
-            });
+                    else{
+                        console.log("hello here i'm");
+                        $.ajax({
+                            type: "POST",
+                            url: "ajax.php",
+                            data: dataString,
+                            success: function(result){
+                                console.log(result);
+                                document.getElementById('event_name').value = '';
+                                document.getElementById('event_date').value = '';
+                                document.getElementById('event_venue').value = '';
+                                }
+                        });
+                    }
+                }
+            }
         }
     });
 
@@ -32,23 +46,42 @@ $(document).ready(function(){
         var email = $("#email_guest").val();
         var name = $("#guest_name").val();
         var contact = $("#guest_contact_number").val();
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         console.log(dataString);
         if(name==''||email==''||contact==''){
-            alert("Please Fill All Fields");
-        }
-        else{
-            console.log("hello here i'm");
-            $.ajax({
-                type: "POST",
-                url: "ajax.php",
-                data: dataString,
-                success: function(result){
-                    console.log(result);
-                    document.getElementById('email_guest').value = '';
-                    document.getElementById('guest_name').value = '';
-                    document.getElementById('guest_contact_number').value = '';
+            document.getElementById("validate_name").innerHTML ="* input can not be empty";
+            document.getElementById("validate_email").innerHTML ="* input can not be empty";
+            document.getElementById("validate_no").innerHTML ="* input can not be empty";
+        } else{
+        if (name=='') {
+            document.getElementById("validate_name").innerHTML ="* input can not be empty";
+        }else{
+            if (email=='') {
+                document.getElementById("validate_email").innerHTML ="* input can not be empty";
+            }else{
+                if (contact=='') {
+                    document.getElementById("validate_no").innerHTML ="* input can not be empty";
+                }
+                else{
+                    if (!filter.test(email)) {
+                        document.getElementById("validate_email").innerHTML ="* must be valid email";
+                    }else{
+                            console.log("hello here i'm");
+                         $.ajax({
+                            type: "POST",
+                            url: "ajax.php",
+                            data: dataString,
+                            success: function(result){
+                                console.log(result);
+                                document.getElementById('email_guest').value = '';
+                                document.getElementById('guest_name').value = '';
+                                document.getElementById('guest_contact_number').value = '';
+                                }
+                            });
+                        }
                     }
-            });
+                }
+            }
         }
     });
 
@@ -58,20 +91,35 @@ $(document).ready(function(){
         var password= $('#guest_password').val();
         var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
         console.log(dataStringa);
-        if(email==''|| password==''){
-            alert("Please fill both Fields");
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(email==''&&password==''){
+            document.getElementById("validate_email").innerHTML ="* input can not be empty";
+            document.getElementById("validate_pass").innerHTML ="* input can not be empty";
+        }else{
+            if (email=='') {
+                document.getElementById("validate_email").innerHTML ="* input can not be empty";
+                } else 
+                    {if (password=='') {
+                        document.getElementById("validate_pass").innerHTML ="* input can not be empty";
+                        } else{
+                                if (!filter.test(email)) {
+                                    document.getElementById("validate_email").innerHTML ="* must be valid email";
+                                }else{
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "ajax.php",
+                                        data: dataStringa,
+                                        success: function(result){
+                                            console.log(result);
+                                            document.getElementById('email_guest').value = '';
+                                            document.getElementById('guest_password').value = '';
+                                        }
+                                    });
+                            }
+                        }
+                    }
         }
-        else{
-            $.ajax({
-                type: "POST",
-                url: "ajax.php",
-                data: dataStringa,
-                success: function(result){
-                    console.log(result);
-                    document.getElementById('email_guest').value = '';
-                }
-            });
-        }
+        
     return false;    
     });
 

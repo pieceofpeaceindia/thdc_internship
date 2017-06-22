@@ -13,7 +13,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="http://coloredcow.com" target="_blank">ColoredCow</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#party">Add Party</a>
@@ -25,59 +25,70 @@
                        <a class="nav-link" href="viewguest.php">View Guest Details</a>
                     </li>
                 </ul>
-             </div>
+             </div> -->
         </nav> 
         
-        <div class="container-fluid">
-            <br/><center>
+        <div class="container">
+            <br>
                 <div class="container form-group row">
                     <div class="col-6 bg-faded">
+                    <br>
                         <h2 id="party" class="text-secondary">ADD EVENT</h2>
                             <form  method="post" id="event_form">          
                                 <div class="form-group row">
-                                    <label for="theme_name" class="col-6 col-form-label ">Theme Name</label>
-                                        <div class="col-12 col-xs-4 col-sm-6 col-md-4">
+                                    <label for="theme_name" class="col-12 col-xs-4 col-sm-6 col-md-5 col-form-label ">Theme Name</label>
+                                        <div class="col-12 col-xs-4 col-sm-6 col-md-5">
                                             <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Theme Name">
+                                        <p id="validate_theme" class="text-danger"></p>   
                                         </div>
-                                    <label for="date" class="col-6 col-form-label">Date</label>
-                                        <div class="col-12 col-xs-4 col-sm-6 col-md-4">
+                                    <label for="date" class="col-12 col-xs-4 col-sm-6 col-md-5 col-form-label">Date</label>
+                                        <div class="col-12 col-xs-4 col-sm-6 col-md-5">
                                             <input type="date" class="form-control" name="event_date" id="event_date">
+                                        <p id="validate_date" class="text-danger"></p>
                                         </div>
-                                    <label for="venue" class="col-6 col-form-label">Venue</label>
-                                        <div class="col-12 col-xs-4 col-sm-6 col-md-4">
+                                    <label for="venue" class="col-12 col-xs-4 col-sm-6 col-md-5 col-form-label">Venue</label>
+                                        <div class="col-12 col-xs-4 col-sm-6 col-md-5">
                                             <input type="text" class="form-control" id="event_venue" name="event_venue" placeholder="Venue">
+                                        <p id="validate_venue" class="text-danger"></p>
                                         </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="select" value="selectevent" id="addingevent">Add Event</button>
+                                <button type="button" class="btn btn-primary" name="select" value="selectevent" id="addingevent">Add Event</button>
                             </form>
                     </div>
                         <br/><br/ >
                     <div class="col-6 bg-faded">
+                        <br>
                         <h2 id="addguest" class="text-secondary">ADD GUESTS</h2>
                         <form method="post" id="guest_form" >     
                             <div class="form-group row">
-                                <label for="Email" class="col-6 col-form-label">Email address</label>
-                                    <div class="col-12 col-xs-6 col-sm-6 col-md-4">
+                                <label for="Email" class="col-xs-4 col-sm-6 col-md-5 col-form-label">Email address</label>
+                                    <div class="col-12 col-xs-6 col-sm-6 col-md-5">
                                         <input type="email" class="form-control" id="email_guest" placeholder="Enter email" name="email_guest">
+                                        <p id="validate_email" class="text-danger"></p>
                                     </div>
-                                <label for="guestname" class="col-6 col-form-label">Name Of The Guest</label>
-                                    <div class="col-12 col-xs-6 col-sm-6 col-md-4">
+                                <label for="guestname" class="col-xs-4 col-sm-6 col-md-5 col-form-label">Name Of The Guest</label>
+                                    <div class="col-xs-6 col-sm-6 col-md-5">
                                        <input type="text" class="form-control required" id="guest_name" placeholder="Guest Name" name="guest_name">
+                                       <p id="validate_name" class="text-danger"></p>
                                     </div>
-                                <label for="contact_number" class="col-6 col-form-label">Phone No.</label>
-                                    <div class="col-12 col-xs-6 col-sm-6 col-md-4">
+                                <label for="contact_number" class="col-xs-4 col-sm-6 col-md-5 col-form-label">Phone No.</label>
+                                    <div class="col-12 col-xs-6 col-sm-6 col-md-5">
                                        <input type="number" class="form-control required" id="guest_contact_number" placeholder="Contact Number" name="guest_contact_number">
+                                       <p id="validate_no" class="text-danger"></p>
                                     </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" name="select" value="selectguest" id="addition">Add Guest</button>
+                            <button type="button" class="btn btn-primary" name="select" value="selectguest" id="addition">Add In List</button>
                         </form>
                         <br> <!-- 
                         <div class="navbar navbar-brand">
                                <span id="show_msg"></span>
                         </div> -->
                     </div>
-                </div></center>
-        </div>  
+                </div>
+            </div>    
+            <div class="container">
+                <?php include_once"function.php"; show_guest_details(); ?>
+            </div>     
 
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         

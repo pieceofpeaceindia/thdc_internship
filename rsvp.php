@@ -14,7 +14,7 @@
     	<center>
     	<br>
     	<div class="row container">
-			<table class="table bg-warning">
+			<table class="table bg-warning table-bordered">
 				<?php
 					$details=array();
 					$servername = "localhost";

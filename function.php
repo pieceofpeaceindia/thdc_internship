@@ -43,7 +43,7 @@
 		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
-		  die;
+		  die();
 		}
 		$sqla = "INSERT INTO guestdetails (email,password,guestname,phone,guestrespone) 
 				VALUES('$email_guest','abc@123', '$guest_name', '$guest_contact_number','PENDING')";
@@ -76,7 +76,7 @@
 		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
-		  die;
+		  die();
 		}
 		$q= "SELECT email,guestname
 			FROM guestdetails
@@ -114,7 +114,7 @@
 		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
-		  die;
+		  die();
 		}
 		$q= "SELECT email,phone
 			FROM guestdetails
@@ -193,12 +193,24 @@
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		  $emailErr = "Invalid email format"; 
 		  echo $emailErr;
-		  die;
+		  die();
 		}
+		$qry= "SELECT email,phone
+			FROM guestdetails
+			WHERE email='$email' OR phone='$number' ";
+		$qury= "SELECT apply_email,apply_number
+			FROM applyguests
+			WHERE apply_email='$email' OR apply_number='$number' ";	
+		$resulta=mysqli_query($connd,$qry);
+		$resultb=mysqli_query($connd,$qury);	
+		if ((mysqli_num_rows($resulta)>0)||(mysqli_num_rows($resultb)>0))  {
+			// echo "Data is already registered";
+			die("Alread Registered");
+		}	
 		$sqlq= "INSERT INTO applyguests(apply_email,apply_name,apply_number) VALUES('$email','$name','$number')";
 
 		if ($connd->query($sqlq) === TRUE) {
-			$output="New record created successfully";
+			$output="THANK YOU FOR REGISTER WE WILL SHORTLY CONNECT TO YOU";
 		    echo $output;
 		}else{
 				echo "Error: " . $sqlq . "<br>" . $connd->error;

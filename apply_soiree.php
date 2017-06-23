@@ -56,6 +56,7 @@
 		<br><br>
 		<div class="row container">
 			<div class="col-sm">
+			<p id="msg"></p>
 				<form  method="POST" id="apply_form">
 					<label for="Email" class="col-8 col-sm col-form-label"><strong><em>Email address :-</em></strong></label>
 		                <div class="col-6 col-sm-4 col-xs-6">
@@ -69,7 +70,7 @@
 	                    </div>
 	                <label for="contact_number" class="col-8 col-sm col-form-label">Phone No.</label>
 	                    <div class="col-6 col-sm-4 col-xs-6">
-	                       <input type="number" class="form-control required" id="apply_contact_number" placeholder="Contact Number" name="apply_contact_number">
+	                       <input type="tel" class="form-control required" id="apply_contact_number" placeholder="Contact Number" name="apply_contact_number">
 	                       <p id="validate_no" class="text-danger"></p>
 	                    </div>
 	                <button type="button" class="btn btn-primary" name="select" value="selectguest" id="register">Register Youself</button>    

@@ -156,6 +156,7 @@ $(document).ready(function(){
     });
 
     $("#register").click(function(){
+        document.getElementById("msg").innerHTML='';
         document.getElementById("validate_name").innerHTML ='';
         document.getElementById("validate_email").innerHTML ='';
         document.getElementById("validate_no").innerHTML ='';
@@ -190,7 +191,7 @@ $(document).ready(function(){
                             url: "ajax.php",
                             data: dataString,
                             success: function(result){
-                                alert(result);
+                                document.getElementById("msg").innerHTML=result;
                                 document.getElementById('apply_email').value = '';
                                 document.getElementById('apply_name').value = '';
                                 document.getElementById('apply_contact_number').value = '';

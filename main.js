@@ -1,6 +1,41 @@
 $(document).ready(function(){
     console.log("ur document is ready");
-    $("#addingevent").click(function(){
+    
+    $("#event_modal").click(function(){
+        document.getElementById("validate_theme").innerHTML ='';
+        document.getElementById("validate_date").innerHTML ='';
+        document.getElementById("validate_venue").innerHTML ='';
+        document.getElementById('event_name').value = '';
+        document.getElementById('event_date').value = '';
+        document.getElementById('event_venue').value = '';
+    });
+
+    $("#guest_modal").click(function(){
+        document.getElementById("validate_name").innerHTML ='';
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById("validate_no").innerHTML ='';
+        document.getElementById('guest_email').value = '';
+        document.getElementById('guest_name').value = '';
+        document.getElementById('guest_contact_number').value = '';
+    });
+
+    $("#register_modal").click(function(){
+        document.getElementById("msg").innerHTML='';
+        document.getElementById("validate_name").innerHTML ='';
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById("validate_no").innerHTML ='';
+        document.getElementById('apply_email').value = '';
+        document.getElementById('apply_name').value = '';
+        document.getElementById('apply_contact_number').value = '';
+    });    
+
+    $("#rsvp_modal").click(function(){
+        document.getElementById("msgrsvp").innerHTML='';
+        document.getElementById("validate_email").innerHTML ='';
+        document.getElementById('email_guest').value = '';
+    });
+
+    $("#addevent").click(function(){
         document.getElementById("validate_theme").innerHTML ='';
         document.getElementById("validate_date").innerHTML ='';
         document.getElementById("validate_venue").innerHTML ='';
@@ -41,15 +76,15 @@ $(document).ready(function(){
                 }
             }
         }
-    });
+    });   
 
-    $("#addition").click(function(){
+    $("#addguest").click(function(){
         document.getElementById("validate_name").innerHTML ='';
         document.getElementById("validate_email").innerHTML ='';
         document.getElementById("validate_no").innerHTML ='';
         console.log("i m adding guest");
         var dataString = 'action=addguest&'+$('#guest_form').serialize();
-        var email = $("#email_guest").val();
+        var email = $("#guest_email").val();
         var name = $("#guest_name").val();
         var contact = $("#guest_contact_number").val();
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -79,7 +114,7 @@ $(document).ready(function(){
                             data: dataString,
                             success: function(result){
                                 console.log(result);
-                                document.getElementById('email_guest').value = '';
+                                document.getElementById('guest_email').value = '';
                                 document.getElementById('guest_name').value = '';
                                 document.getElementById('guest_contact_number').value = '';
                                 }
@@ -91,43 +126,30 @@ $(document).ready(function(){
         }
     });
 
-    $("#rsvp").click(function(){
+    $("#get_link").click(function(){
         document.getElementById("validate_email").innerHTML ='';
-        document.getElementById("validate_pass").innerHTML ='';
         console.log("under rsvp");
         var email = $("#email_guest").val();
-        var password= $('#guest_password').val();
         var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
         console.log(dataStringa);
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if(email==''&&password==''){
+        if(email==''){
             document.getElementById("validate_email").innerHTML ="* input can not be empty";
-            document.getElementById("validate_pass").innerHTML ="* input can not be empty";
         }else{
-            if (email=='') {
-                document.getElementById("validate_email").innerHTML ="* input can not be empty";
-                } else 
-                    {if (password=='') {
-                        document.getElementById("validate_pass").innerHTML ="* input can not be empty";
-                        } else{
-                                if (!filter.test(email)) {
-                                    document.getElementById("validate_email").innerHTML ="* must be valid email";
-                                }else{
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "ajax.php",
-                                        data: dataStringa,
-                                        success: function(result){
-                                            console.log(result);
-                                            document.getElementById('email_guest').value = '';
-                                            document.getElementById('guest_password').value = '';
-                                        }
-                                    });
-                            }
+            if (!filter.test(email)) {
+                document.getElementById("validate_email").innerHTML ="* must be valid email";
+            }else{
+                    $.ajax({
+                        type: "POST",
+                        url: "ajax.php",
+                        data: dataStringa,
+                        success: function(result){
+                            document.getElementById("msgrsvp").innerHTML=result;
+                            document.getElementById('email_guest').value = '';
                         }
-                    }
-        }
-        
+                    });
+                }
+        }       
     return false;    
     });
 

@@ -25,7 +25,34 @@
              </div>
         </nav>
         <br>
-        <div class="container"> 
+        <div class="container">
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				</ol>
+			  	<div class="carousel-inner" role="listbox">
+			    	<div class="carousel-item active">
+			    		<img class="d-block img-fluid" src="bg2.jpg" alt="First slide" style="width:100%;height:500px;">
+			    	</div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="bg3.jpg" alt="Second slide" style="width:100%;height:500px;">
+				    </div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="bg4.jpg" alt="Third slide" style="width:100%;height:500px;">
+				    </div>
+				</div>
+			  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    	<span class="sr-only">Previous</span>
+			  	</a>
+			  	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    	<span class="sr-only">Next</span>
+			  	</a>
+			</div>
+         	<hr>
         	<div class="container" style="border-left:2px solid #CC9900;">
 	        		<h3 style="font-family: 'courier';color:#993333;">About Us</h3>
 	        	<div>
@@ -37,6 +64,11 @@
 	        	<div>	
 	        		<p style="font-family:monospace;font-size: 18px;color:#CC9900;">Every first saturday of each month we sit together and talk about our life and discuss things happenning around. We believe that there must be healthy relationship among the collegues so that the essence of the organization can sustain. We invite all of our clients, friends, friends of friends and even some one who wanna be part of the event he can register through portal. This is the &quot;SOIREE&quot;. Details of the upcoming event is shown below you can gave response or register.</p>
         		</div>
+        	</div>
+        	<div class="container">
+        		<hr>
+        		<center><h3 style="font-family:'comic sans ms';color:red">SOIREE-JULY</h3><center>
+        		<hr>
         	</div>
 	    	<div class="container-fluid">
 					<?php include_once"function.php"; current_event(); ?>
@@ -155,33 +187,6 @@
 			      		</div>
 			    	</div>
 			  	</div>
-			</div>
-
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
-			  	<div class="carousel-inner" role="listbox">
-			    	<div class="carousel-item active">
-			    		<img class="d-block img-fluid" src="bg2.jpg" alt="First slide" style="width:100%;height:400px;">
-			    	</div>
-				    <div class="carousel-item">
-				    	<img class="d-block img-fluid" src="bg3.jpg" alt="Second slide" style="width:100%;height:400px;">
-				    </div>
-				    <div class="carousel-item">
-				    	<img class="d-block img-fluid" src="bg4.jpg" alt="Third slide" style="width:100%;height:400px;">
-				    </div>
-				</div>
-			  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    	<span class="sr-only">Previous</span>
-			  	</a>
-			  	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			    	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    	<span class="sr-only">Next</span>
-			  	</a>
 			</div>
 		</div>			
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

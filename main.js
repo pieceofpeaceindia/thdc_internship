@@ -108,6 +108,12 @@ $(document).ready(function(){
                         document.getElementById("validate_email").innerHTML ="* must be valid email";
                     }else{
                             console.log("hello here i'm");
+                                var table = document.getElementById("guest_table");
+                                var row = table.insertRow(1);
+                                var cell1 = row.insertCell(0);
+                                var cell2 = row.insertCell(1);
+                                cell1.innerHTML = name;
+                                cell2.innerHTML = "PENDING";
                          $.ajax({
                             type: "POST",
                             url: "ajax.php",
@@ -225,4 +231,10 @@ $(document).ready(function(){
             }
         }
     });
+
+    $("#accept").click(function(){
+        var dataStringa = $('#form').serialize();
+        console.log(dataStringa);
+    });
+
 });

@@ -37,6 +37,7 @@
 	        		</center>
 	        	</div>
 	        </div>
+	        </div>
 	        <br>
 	    	<div class="container" id="guests">
                 <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">PREVIOUSLY INVITED GUEST

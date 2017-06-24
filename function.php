@@ -141,7 +141,7 @@
 		} 
 		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails";
 		$result = $conn->query($sql);
-		echo "<table class='table table-striped table-bordered' style='text-align:center'>";
+		echo "<table class='table table-striped table-bordered' style='text-align:center' id='guest_table'>";
 			echo "<thead class='bg-warning'>";
 				echo "<tr>";
 					echo "<th style='text-align:center'>"."Guest Name"."</th>";
@@ -272,6 +272,7 @@
 	                echo "</tr>";
 	            echo "</thead>";
 	            echo "<tbody>";
+	            	
 			        while($row = $result->fetch_assoc()) 
 			            {
 			            echo "<tr class='text-primary'>";
@@ -285,7 +286,9 @@
 			                    echo $row["apply_number"];
 			                echo "</td>";
 			                echo "<td>";
-			                    echo "<b>"."<a href='' class='text-success'>"."ADD"."</a>"."&nbsp;"."&nbsp;"."&nbsp;"."<a href='' class='text-danger'>"."REJECT"."</a>"."</b>";
+			                    echo "<button type='button' class='btn btn-success' id='accept'>Add</button>";
+			                    echo "&nbsp; &nbsp;";
+			                    echo "<button type='button' class='btn btn-danger' id='decline'>Decline</button>";
 			                echo "</td>";
 			            echo "</tr>";
 			            }

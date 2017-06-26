@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,7 +26,6 @@
         </nav>
         <hr>
         <div class="container"> 
-  			<?php include_once"function.php"; current_event(); ?>
 			<div class="container">
 			<div class="row justify-content-md-around">
 	        	<div class="col-4">
@@ -62,20 +61,20 @@
 			          			<span aria-hidden="true">&times;</span>
 			        		</button>
 			      		</div>
+			      		<form class="form-group" id="guest_form">
 			      		<div class="modal-body">
-				      		<form class="form-group" id="guest_form">
-				        		<input type="text" placeholder="Guest Name" name="guest_name" id="guest_name">
+				        		<input type="text" placeholder="Guest Name" name="guest_name" id="guest_name" required>
 				        		<p id="validate_name" class="text-danger"></p>
-				        		<input type="email" placeholder="E-Mail" name="guest_email" id="guest_email">
+				        		<input type="email" placeholder="E-Mail" name="guest_email" id="guest_email" required>
 				        		<p id="validate_email" class="text-danger"></p>
-				        		<input type="tel" placeholder="Contact Number" name="guest_contact_number" id="guest_contact_number">
+				        		<input type="tel" placeholder="Contact Number" name="guest_contact_number" id="guest_contact_number" required>
 	                            <p id="validate_no" class="text-danger"></p>
-                            </form>
 			      		</div>
 			      		<div class="modal-footer">
 			        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			        		<button type="button" class="btn btn-success" id="addguest">Add</button>
 			      		</div>
+			      		</form>
 			    	</div>
 			  	</div>
 			</div>

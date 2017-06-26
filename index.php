@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-info ">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -104,7 +104,7 @@
 			      		<div class="modal-body">
 			      			<p id="msgrsvp"></p>
 			      			<form class="form-group" id="rsvp_form">
-			        			<input type="email" placeholder="E-mail" name="email_guest" id="email_guest">
+			        			<input type="email" placeholder="E-mail" name="email_guest" id="email_guest" required>
 			        			<p id="validate_email" class="text-danger"></p>
 			        		</form>
 			      		</div>
@@ -128,11 +128,11 @@
 			      		<div class="modal-body">
 			      			<p id="msg"></p>
 			      			<form class="form-group" id="apply_form">
-				        		<input type="text" placeholder="Your Name" name="apply_name" id="apply_name">
-				        		<p id="validate_email" class="text-danger"></p>
-				        		<input type="email" placeholder="Your E-mail" name="apply_email" id="apply_email">
+				        		<input type="text" placeholder="Your Name" name="apply_name" id="apply_name" required>
 				        		<p id="validate_name" class="text-danger"></p>
-				        		<input type="tel" placeholder="Contact Number" name="apply_contact_number" id="apply_contact_number">
+				        		<input type="email" placeholder="Your E-mail" name="apply_email" id="apply_email" required>
+				        		<p id="validate_email" class="text-danger"></p>
+				        		<input type="tel" placeholder="Contact Number" name="apply_contact_number" id="apply_contact_number" required>
 				        		<p id="validate_no" class="text-danger"></p>
 				        	</form>	
 			      		</div>

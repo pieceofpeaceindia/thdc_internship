@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,11 +51,11 @@
 			      		</div>
 			      		<div class="modal-body">
                             <form class="form-group" id="event_form">
-    			        		<input type="text" placeholder="Event Theme Name" name="event_name" id="event_name">
+    			        		<input type="text" placeholder="Event Theme Name" name="event_name" id="event_name" required>
     			        		<p id="validate_theme" class="text-danger"></p>
-    			        		<input type="date" placeholder="Date" name="event_date" id="event_date">
+    			        		<input type="date" placeholder="Date" name="event_date" id="event_date" required>
     			        		<p id="validate_date" class="text-danger"></p>
-    			        		<input type="text" placeholder="Venue" name="event_venue" id="event_venue">
+    			        		<input type="text" placeholder="Venue" name="event_venue" id="event_venue" required>
                                 <p id="validate_venue" class="text-danger"></p>
                             </form>
 			      		</div>

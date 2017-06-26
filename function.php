@@ -286,9 +286,9 @@
 			                    echo $row["apply_number"];
 			                echo "</td>";
 			                echo "<td>";
-			                    echo "<button type='button' class='btn btn-success' id='accept'>Add</button>";
+			                    echo "<button type='button' class='btn btn-success' name='accept'>Add</button>";
 			                    echo "&nbsp; &nbsp;";
-			                    echo "<button type='button' class='btn btn-danger' id='decline'>Decline</button>";
+			                    echo "<button type='button' class='btn btn-danger' name='decline'>Decline</button>";
 			                echo "</td>";
 			            echo "</tr>";
 			            }

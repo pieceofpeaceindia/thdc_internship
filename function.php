@@ -228,7 +228,7 @@
 		if ($result->num_rows > 0) 
 			{
 		    $row = $result->fetch_assoc();
-		    	echo "<table class='table bg-info table-bordered'>";
+		    	echo "<table class='table table-bordered' style='background-color: #e3f2fd;''>";
 		    	echo "<thead>";
 		    	echo "<tr>";
 		    	echo "<th>";

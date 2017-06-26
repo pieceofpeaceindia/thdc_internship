@@ -59,6 +59,7 @@
 	        		<p style="font-family:monospace ;font-size: 18px;color:#999900;">ColoredCow is a problem solving company; we solve business problems through technology. We center the solutions around our clients and the people their business affects. Our software products and services grow business when we make connection at the heart by making empathy the main element. We believe in providing long lasting solutions that we can share as success stories. A colored cow would always stand out from the crowd; we do justice to our name by reflecting the same in our thoughts and in the way we work.</p>
         		</div>
         	</div>
+        	<hr>
         	<div class="container" class="container" style="border-left:2px solid #999900;">	
         			<h3 style="font-family: 'courier';color:#993333">About &quot;SOIREE&quot;</h3>
 	        	<div>	
@@ -74,14 +75,14 @@
 					<?php include_once"function.php"; current_event(); ?>
 	        </div>
 	        <div class="row justify-content-md-around">
-	        	<div class="col-4">
+	        	<div class="col col-xs-12 col-sm-4">
 	        		<center>
 	        		<br>
 	        		<h3 class="text-primary" style="font-family: 'comic sans ms';">RESPONSE FOR SOIREE</h3>
 	        	   <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#rsvp_modal" name="rsvp-modal" id="rsvp-modal">RSVP</button>
 	        		</center>
 	        	</div>
-	        	<div class="col-4">
+	        	<div class="col col-xs-12 col-sm-4">
 	        		<center>
 	        		<br>
 	        		<h3 class="text-primary" style="font-family: 'comic sans ms';">REGISTER FOR SOIREE</h3>

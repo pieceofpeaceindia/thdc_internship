@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
              </div>
         </nav>
         <br>
-        <div class="container">
+        <div class="container" style="padding-top:50px;">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
 					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -53,13 +53,13 @@
 			  	</a>
 			</div>
          	<hr>
-        	<div class="container" style="border-left:2px solid #CC9900;">
+<!--         	<div class="container" style="border-left:2px solid #CC9900;">
 	        		<h3 style="font-family: 'courier';color:#993333;">About Us</h3>
 	        	<div>
 	        		<p style="font-family:monospace ;font-size: 18px;color:#999900;">ColoredCow is a problem solving company; we solve business problems through technology. We center the solutions around our clients and the people their business affects. Our software products and services grow business when we make connection at the heart by making empathy the main element. We believe in providing long lasting solutions that we can share as success stories. A colored cow would always stand out from the crowd; we do justice to our name by reflecting the same in our thoughts and in the way we work.</p>
         		</div>
         	</div>
-        	<hr>
+        	<hr> -->
         	<div class="container" class="container" style="border-left:2px solid #999900;">	
         			<h3 style="font-family: 'courier';color:#993333">About &quot;SOIREE&quot;</h3>
 	        	<div>	
@@ -68,7 +68,10 @@
         	</div>
         	<div class="container">
         		<hr>
-        		<center><h3 style="font-family:'comic sans ms';color:red">SOIREE-JULY</h3><center>
+        		<center>
+        			<h3 style="font-family:'courier'; font-weight: bold; color:red">&quot;CREATING MEMORIES TOGETHER&quot;</h3>
+        			<h3 style="font-family:'courier'; font-weight: bold; color:red">SOIREE-JULY</h3>
+        		<center>
         		<hr>
         	</div>
 	    	<div class="container-fluid">
@@ -161,7 +164,7 @@
 			      		</div>
 			      		<div class="modal-footer">
 			        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        		<button type="button" class="btn btn-success" onclick="window.location.href='guests.php'" id="login">Log In</button>
+			        		<button type="button" class="btn btn-success" onclick="window.location.href='guest.php'" id="login">Log In</button>
 			      		</div>
 			    	</div>
 			  	</div>

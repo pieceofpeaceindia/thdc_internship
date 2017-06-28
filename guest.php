@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,7 +25,7 @@
              </div>
         </nav>
         <hr>
-        <div class="container"> 
+        <div class="container" style="padding-top:25px;"> 
 			<div class="container">
 			<div class="row justify-content-md-around">
 	        	<div class="col-4">
@@ -38,17 +38,12 @@
 	        </div>
 	        </div>
 	        <br>
-	    	<div class="container" id="guests">
-                <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">PREVIOUSLY INVITED GUEST
-                </nav>
-                <?php include_once"function.php"; show_guest_details(); ?>
+	    	<div class="table-responsive" id="guests"> 
+               
             </div>     
             <hr><hr>
-            <div class="container" id="applied">
-                <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">REQUESTED PEOPLE'S DETAILS
-                </nav>
-                <?php include_once"function.php"; apply_list(); ?>
-                <br>
+            <div class="table-responsive" id="applied">
+
             </div> 
 	        <br>
 			<!-- Modal -->
@@ -63,16 +58,16 @@
 			      		</div>
 			      		<form class="form-group" id="guest_form">
 			      		<div class="modal-body">
-				        		<input type="text" placeholder="Guest Name" name="guest_name" id="guest_name" required>
-				        		<p id="validate_name" class="text-danger"></p>
-				        		<input type="email" placeholder="E-Mail" name="guest_email" id="guest_email" required>
-				        		<p id="validate_email" class="text-danger"></p>
-				        		<input type="tel" placeholder="Contact Number" name="guest_contact_number" id="guest_contact_number" required>
-	                            <p id="validate_no" class="text-danger"></p>
+			      				<p id="msg"></p>
+				        		<input type="text" placeholder="Guest Name" name="guestname" id="guestname" required>
+				        		<p></p>
+				        		<input type="email" placeholder="E-Mail" name="email" id="email" required>
+				        		<p></p>
+				        		<input type="tel" placeholder="Contact Number" name="phone" id="phone" required>
 			      		</div>
 			      		<div class="modal-footer">
 			        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        		<button type="button" class="btn btn-success" id="addguest">Add</button>
+			        		<button type="button" class="btn btn-success" name="action " id="action">Add</button>
 			      		</div>
 			      		</form>
 			    	</div>
@@ -87,5 +82,93 @@
    
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 </html>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	fetch_guest();
+	fetch_appply_guest();	
+		function fetch_guest(){
+			var action="select";
+			$.ajax({
+				url: "updateautomatic.php",
+				method: "POST",
+				data:{action:action},
+				success:function(data){
+					$('#action').text("Add");
+					$('#guests').html(data);
+				}
+			});
+		}
+		function fetch_appply_guest(){
+			var action="select";
+			$.ajax({
+				url: "applyguestdetails.php",
+				method: "POST",
+				data:{action:action},
+				success:function(data){
+					// $('#action').text("Add");
+					$('#applied').html(data);
+				}
+			});
+		}	
+		$("#action").click(function(){
+			var guestform = $('#guest_form');
+			if(!guestform[0].checkValidity()){
+            guestform[0].reportValidity();
+            return;
+       		}
+			var guest_name= $('#guestname').val();
+			var guest_email= $('#email').val();
+			var contact= $('#phone').val();
+			var id=$('#guest_id').val();
+			var action=$('#action').val();
+			console.log(guest_name);
+			console.log(guest_email);
+			console.log(contact);
+			$.ajax({
+				url: "action.php",
+				method:"POST",
+				data:{guest_name:guest_name,guest_email:guest_email,contact:contact,id:id,action:action},
+				success:function(result){
+					document.getElementById("msg").innerHTML=result;
+					document.getElementById('guest_form').reset();
+					// alert(result);
+					fetch_guest();
+				}
+			})
+		});
+
+		$(document).on('click', '.reject', function(){
+			var applyid= $(this).attr("id");
+			var action="reject";
+			$.ajax({
+				url:"ajax.php",
+				method:"POST",
+				data:{applyid:applyid, action:action},
+				success:function(data){
+					fetch_guest();
+					fetch_appply_guest();
+					alert(data);
+				}
+			})
+		});
+
+		$(document).on('click', '.accept', function(){
+			var applyid= $(this).attr("id");
+			var action="accept";
+			$.ajax({
+				url:"ajax.php",
+				method:"POST",
+				data:{applyid:applyid, action:action},
+				success:function(data){
+					fetch_guest();
+					fetch_appply_guest();
+					alert(data);
+				}
+			})
+		});		
+
+	});
+</script>

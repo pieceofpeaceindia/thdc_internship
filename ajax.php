@@ -16,6 +16,12 @@
 				break;
 			case 'applyguest':
 				print json_encode(apply($_POST["apply_email"],$_POST["apply_name"],$_POST["apply_contact_number"]));	
+			case 'reject':
+				print json_encode(approve_request($_POST["applyid"]));
+				break;
+			case 'accept':
+				print json_encode(decline_request($_POST["applyid"]));
+				break;	
 			default:
 				echo "invalid";
 				break;

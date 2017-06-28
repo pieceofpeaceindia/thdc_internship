@@ -8,7 +8,7 @@
     </head>
   
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">    
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary fixed-top">    
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,7 +24,7 @@
                 </ul>
              </div>
         </nav>
-        <div class="container"> 
+        <div class="container" style="padding-top: 75px;"> 
             <div class="row ">
                 <div class="col-4">
                     <center>

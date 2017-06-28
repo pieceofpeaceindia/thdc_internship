@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     $("#addguest").click(function(){
         console.log("i m adding guest");
-        document.getElementById("guest_name").val();
+        var name = document.getElementById("guest_name").value;
         var guestform = $('#guest_form');
         if(!guestform[0].checkValidity()){
             guestform[0].reportValidity();
@@ -30,7 +30,6 @@ $(document).ready(function(){
         var dataString = 'action=addguest&'+$('#guest_form').serialize();
 
         console.log(dataString);
-        console.log("hello here i'm");
             var table = document.getElementById("guest_table");
             var row = table.insertRow(1);
             var cell1 = row.insertCell(0);

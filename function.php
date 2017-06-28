@@ -346,4 +346,63 @@
         echo "</tbody>";
     echo "</table>";
 	}
+
+	function approve_request(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+
+		$conna = new mysqli($servername, $username, $password, $dbname);
+		if ($conna->connect_error) 
+		{
+		    die("Connection failed: " . $conna->connect_error);
+		}
+		$applyd= mysqli_real_escape_string($conna, $_POST["applyid"]);
+		$sql= "SELECT apply_id,apply_name,apply_email,apply_number
+				FROM applyguests
+				WHERE apply_id='$applyd' ";
+		$result=mysqli_query($conna,$sql);
+		$row=mysqli_fetch_assoc($result);
+		$name =$row["apply_name"];
+		$email=$row["apply_email"];
+		$number=$row["apply_number"];
+		$sqlb ="DELETE FROM applyguests
+				WHERE apply_id='$applyd'";
+		mysqli_query($conna,$sqlb);		
+		echo $name." request has been rejected";						
+		$conna->close();
+	}		
+
+	// if (isset($_POST["actn"])=="accept") 
+		function decline_request(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+
+		$conna = new mysqli($servername, $username, $password, $dbname);
+		if ($conna->connect_error) 
+		{
+		    die("Connection failed: " . $conna->connect_error);
+		}
+		$applyd= mysqli_real_escape_string($conna, $_POST["applyid"]);
+		$sqla= "SELECT apply_id,apply_name,apply_email,apply_number
+				FROM applyguests
+				WHERE apply_id='$applyd' ";
+		$result=mysqli_query($conna,$sqla);
+		$row=mysqli_fetch_assoc($result);
+		$name =$row["apply_name"];
+		$email=$row["apply_email"];
+		$number=$row["apply_number"];		
+		$sqlc = "INSERT INTO guestdetails (email,guestname,phone,guestrespone) 
+				VALUES('$email', '$name', '$number','CONFIRM')";
+		// die($sqlc);		
+		mysqli_query($conna,$sqlc);		
+		echo $name." request has been accepted";
+		$sqlb ="DELETE FROM applyguests
+		WHERE apply_id='$applyd'";
+		mysqli_query($conna,$sqlb);						
+		$conna->close();
+	}		
 ?>

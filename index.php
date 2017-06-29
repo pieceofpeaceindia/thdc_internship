@@ -13,8 +13,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
                     <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link" data-toggle="modal" data-target="#guestpage_link">Guests</a>
                     </li>
@@ -31,17 +31,33 @@
 					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+				    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
 				</ol>
 			  	<div class="carousel-inner" role="listbox">
 			    	<div class="carousel-item active">
-			    		<img class="d-block img-fluid" src="bg2.jpg" alt="First slide" style="width:100%;height:500px;">
+			    		<img class="d-block img-fluid" src="8.jpg" alt="First slide" style="width:100%;height:500px;">
 			    	</div>
 				    <div class="carousel-item">
-				    	<img class="d-block img-fluid" src="bg3.jpg" alt="Second slide" style="width:100%;height:500px;">
+				    	<img class="d-block img-fluid" src="1.jpg" alt="Second slide" style="width:100%;height:500px;">
 				    </div>
 				    <div class="carousel-item">
-				    	<img class="d-block img-fluid" src="bg4.jpg" alt="Third slide" style="width:100%;height:500px;">
+				    	<img class="d-block img-fluid" src="2.jpg" alt="Third slide" style="width:100%;height:500px;">
 				    </div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="3.jpg" alt="Fourth slide" style="width:100%;height:500px;">
+				    </div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="9.jpg" alt="Fifth slide" style="width:100%;height:500px;">
+				    </div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="6.jpg" alt="Sixth slide" style="width:100%;height:500px;">
+				    </div>
+				    <div class="carousel-item">
+				    	<img class="d-block img-fluid" src="4.jpg" alt="Third slide" style="width:100%;height:500px;">
+				    </div>				    				    				    				    
 				</div>
 			  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -63,7 +79,7 @@
         	<div class="container" class="container" style="border-left:2px solid #999900;">	
         			<h3 style="font-family: 'courier';color:#993333">About &quot;SOIREE&quot;</h3>
 	        	<div>	
-	        		<p style="font-family:monospace;font-size: 18px;color:#CC9900;">Every first saturday of each month we sit together and talk about our life and discuss things happenning around. We believe that there must be healthy relationship among the collegues so that the essence of the organization can sustain. We invite all of our clients, friends, friends of friends and even some one who wanna be part of the event he can register through portal. This is the &quot;SOIREE&quot;. Details of the upcoming event is shown below you can gave response or register.</p>
+	        		<p style="font-family:monospace;font-size: 18px;color:#CC9900;">We at ColoredCow celebrate conversations. Conversations that stir our soul and are more than a blur in this worldly rumble. With that aim we started to build a tribe of people who resonate with the thought. we invited our friends who have been part of our journey to toast the enriching concept of traveling. In midst of music, food, laughter, dance and conversations we relived our happy travel memories again.The Tribe meets first Saturday of every month to carry forward the love for conversations, and this feeling was enhanced this time with the theme- Love! Sitting down on colorful mattresses, under the moonlight blanket of stars, we shared a lovely evening consuming food, music and conversations.</p>
         		</div>
         	</div>
         	<div class="container">

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    fetch_guest();
+    fetch_appply_guest();
     console.log("ur document is ready");
     $("#addevent").click(function(){
         console.log("i m adding event");
@@ -92,7 +94,6 @@ $(document).ready(function(){
     });
 
     $("#register").click(function(){
-        document.getElementById("msg").innerHTML='';
         console.log("i m applying as guest");
         var userregister= $('#apply_form');
         if (!userregister[0].checkValidity()) {
@@ -112,4 +113,88 @@ $(document).ready(function(){
             });
     });
 
+    $("#register_modal").click(function(){
+        document.getElementById("msg").innerHTML='';
+    });
+
+    $("#action").click(function(){
+        var guestform = $('#guest_form');
+        if(!guestform[0].checkValidity()){
+        guestform[0].reportValidity();
+        return;
+        }
+        var guest_name= $('#guestname').val();
+        var guest_email= $('#email').val();
+        var contact= $('#phone').val();
+        var id=$('#guest_id').val();
+        var action= "addguest";
+        console.log(guest_name);
+        console.log(guest_email);
+        console.log(contact);
+        $.ajax({
+            url: "ajax.php",
+            method:"POST",
+            data:{guest_name:guest_name,guest_email:guest_email,contact:contact,id:id,action:action},
+            success:function(result){
+                document.getElementById("msg").innerHTML=result;
+                document.getElementById('guest_form').reset();
+                alert(result);
+                fetch_guest();
+            }
+        })
+    });
+
+    $(document).on('click', '.reject', function(){
+        var applyid= $(this).attr("id");
+        var action="reject";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{applyid:applyid, action:action},
+            success:function(data){
+                fetch_guest();
+                fetch_appply_guest();
+                alert(data);
+            }
+        })
+    });
+
+    $(document).on('click', '.accept', function(){
+        var applyid= $(this).attr("id");
+        var action="accept";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{applyid:applyid, action:action},
+            success:function(data){
+                fetch_guest();
+                fetch_appply_guest();
+                alert(data);
+            }
+        })
+    });   
+    function fetch_guest(){
+        var action="selectguest";
+        $.ajax({
+            url: "ajax.php",
+            method: "POST",
+            data:{action:action},
+            success:function(data){
+                // $('#action').text("Add");
+                $('#guests').html(data);
+            }
+        });
+    }
+    function fetch_appply_guest(){
+        var action="selectapplyguest";
+        $.ajax({
+            url: "ajax.php",
+            method: "POST",
+            data:{action:action},
+            success:function(data){
+                // $('#action').text("Add");
+                $('#applied').html(data);
+            }
+        });
+    }   
 });

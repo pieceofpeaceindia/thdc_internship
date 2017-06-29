@@ -27,34 +27,36 @@
 	}
 
 	function addaguest(){
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "internrsvp";
+	$output ='';
+	$conn= mysqli_connect("localhost","root","","internrsvp");
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "internrsvp";
 
-		$conna = new mysqli($servername, $username, $password, $dbname);
-		if ($conna->connect_error) 
-		{
-		    die("Connection failed: " . $conna->connect_error);
-		}
-		$email_guest=@$_POST['guest_email'];
-		$guest_name=$_POST['guest_name'];
-		$guest_contact_number=$_POST['guest_contact_number'];
-		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
-		  $emailErr = "Invalid email format"; 
-		  die($emailErr);
-		}
-		$sqla = "INSERT INTO guestdetails (email,password,guestname,phone,guestrespone) 
-				VALUES('$email_guest','abc@123', '$guest_name', '$guest_contact_number','PENDING')";
+	$conna = new mysqli($servername, $username, $password, $dbname);
+	if ($conna->connect_error) 
+	{
+	    die("Connection failed: " . $conna->connect_error);
+	}
+	$guest_name= mysqli_real_escape_string($conna, $_POST["guest_name"]);
+	$email_guest= mysqli_real_escape_string($conna, $_POST["guest_email"]);
+	$guest_contact_number= mysqli_real_escape_string($conna, $_POST["contact"]);
+	if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
+	  $emailErr = "Invalid email format"; 
+	  die($emailErr);
+	}
+	$sqla = "INSERT INTO guestdetails (email,guestname,phone,guestrespone) 
+			VALUES('$email_guest', '$guest_name', '$guest_contact_number','PENDING')";
 
 
-		if ($conna->query($sqla) === TRUE) {
-			$output="Guest added successfully";
-		    echo $output;
-		}else{
-				echo "Error: " . $sqla . "<br>" . $conna->error;
-		    }
-		$conna->close();
+	if ($conna->query($sqla) === TRUE) {
+		$output="Guest added successfully";
+	    echo $output;
+	}else{
+			echo "Error: " . $sqla . "<br>" . $conna->error;
+	    }
+	$conna->close();
 	}
 
 	function updatedetails() {
@@ -128,46 +130,6 @@
 			echo "THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME";
 		}		
 		$connb->close();	
-	}
-
-	function show_guest_details(){
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "internrsvp";
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		} 
-		$sql = "SELECT email,guestname,phone,guestrespone FROM guestdetails";
-		$result = $conn->query($sql);
-		echo "<table class='table table-striped table-bordered' style='text-align:center' id='guest_table'>";
-			echo "<thead class='bg-warning'>";
-				echo "<tr>";
-					echo "<th style='text-align:center'>"."Guest Name"."</th>";
-					echo "<th style='text-align:center'>"."Response."."</th>";
-				echo "</tr>";
-			echo "</thead>";
-			echo "<tbody>";
-			if ($result->num_rows > 0) 
-				{
-			    while($row = $result->fetch_assoc()) 
-			    	{
-			    	echo "<tr class='text-primary'>";
-			    		echo "<td>";
-			    			echo $row["guestname"];
-			    		echo "</td>";
-			    		echo "<td>";
-			    			echo $row["guestrespone"];
-			    		echo "</td>";
-			    	echo "</tr>";
-			        }
-				} else {
-			    echo "No guest Till now";
-			}
-			$conn->close();
-			echo "</tbody>";
-		echo "</table>";
 	}
 
 	function apply(){
@@ -249,55 +211,124 @@
 		$conn->close();
 	}
 
-	function apply_list(){
-		$servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "internrsvp";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        } 
-        $sql = "SELECT apply_email,apply_name,apply_number FROM applyguests";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) 
-        {
-        	echo "<table class='table table-striped table-bordered' style='text-align:center'>";
-	        	echo "<thead class='bg-warning'>";
-	                echo "<tr>";
-	                    echo "<th style='text-align:center'>Name</th>";
-	                    echo "<th style='text-align:center'>E-Mail</th>";
-	                    echo "<th style='text-align:center'>Contact Number</th>";
-	                    echo "<th style='text-align:center'>Action</th>";
-	                echo "</tr>";
-	            echo "</thead>";
-	            echo "<tbody>";
-	            	
-			        while($row = $result->fetch_assoc()) 
-			            {
-			            echo "<tr class='text-primary'>";
-			                echo "<td>";
-			                    echo $row["apply_name"];
-			                echo "</td>";
-			                echo "<td>";
-			                    echo $row["apply_email"];
-			                echo "</td>";
-			                echo "<td>";
-			                    echo $row["apply_number"];
-			                echo "</td>";
-			                echo "<td>";
-			                    echo "<button type='button' class='btn btn-success' name='accept'>Add</button>";
-			                    echo "&nbsp; &nbsp;";
-			                    echo "<button type='button' class='btn btn-danger' name='decline'>Decline</button>";
-			                echo "</td>";
-			            echo "</tr>";
-			            }
-		        echo "</tbody>";
-	        echo "</table>";
-        } else {
-        echo "No guest Till now";
-    }
-    $conn->close();
+	function guests_list()
+	{
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "internrsvp";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	} 
+	$output = ''; 
+	$procedure = "
+		CREATE PROCEDURE selectguest()
+		BEGIN  
+			SELECT email,guestname,phone,guestrespone FROM guestdetails ORDER BY id DESC;
+		END;
+		";
+		if(mysqli_query($conn, "drop PROCEDURE IF EXISTS selectguest")){
+			if (mysqli_query($conn,$procedure)) {
+				$query ="CALL selectguest()";
+				$result1= mysqli_query($conn,$query);
+				$output .='
+						<table class="table table-bordered table-striped table-fixed">
+							<thead class="bg-warning">
+								<tr>	
+									<th width="20%">Name</th>
+									<th width="20%">Email</th>
+									<th width="20%">Contact No</th>
+									<th width="20%">Status</th>
+								</tr>
+							</thead>
+							<tbody>	
+				';
+				if (mysqli_num_rows($result1)>0) {
+					while ($row=mysqli_fetch_array($result1)) {
+						$output .='
+								<tr>
+									<td>'.$row["guestname"].'</td>
+									<td>'.$row["email"].'</td>
+									<td>'.$row["phone"].'</td>
+									<td>'.$row["guestrespone"].'</td>
+								</tr>
+						';
+					}
+				}else{
+
+					$output .='
+								<tr>
+									<td colspan="5">No Data Found</td>
+								</tr>
+					';
+				}
+				$output .='</tbody>
+						</table>';
+				echo $output;
+			}
+		}						
+	}
+
+	function apply_guests_list()
+	{
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "internrsvp";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	} 
+	$output = ''; 
+	$procedure = "
+		CREATE PROCEDURE select_apply_guest()
+		BEGIN  
+			SELECT apply_id,apply_email,apply_name,apply_number FROM applyguests ORDER BY apply_id DESC;
+		END;
+		";
+		if(mysqli_query($conn, "drop PROCEDURE IF EXISTS select_apply_guest")){
+			if (mysqli_query($conn,$procedure)) {
+				$query ="CALL select_apply_guest()";
+				$result= mysqli_query($conn,$query);
+				$output .='
+						<table class="table table-bordered table-striped">
+							<thead class="bg-warning">
+								<tr>	
+									<th width="20%">Name</th>
+									<th width="20%">Email</th>
+									<th width="20%">Contact No</th>
+									<th colspan="2">Action</th>
+								</tr>
+							</thead>
+							<tbody>	
+				';
+    			if (mysqli_num_rows($result) > 0){
+					while ($row=mysqli_fetch_array($result)) {
+						$output .='
+								<tr>
+									<td>'.$row["apply_name"].'</td>
+									<td>'.$row["apply_email"].'</td>
+									<td>'.$row["apply_number"].'</td>
+									<td><button type="button" name="add" id="'.$row["apply_id"].'" class="btn btn-success accept">Accept</button> &nbsp; 
+									<button type="button" name="reject" id="'.$row["apply_id"].'" class="btn btn-danger reject">Reject</button></td>
+								</tr>
+						';
+					}
+				}else{
+
+					$output .='
+								<tr>
+									<td colspan="5">No Data Found</td>
+								</tr>
+					';
+				}
+				$output .='</tbody>
+						</table>';
+				echo $output;
+			}
+		}						
+	$conn->close();
 	}
 
 	function show_all_events(){

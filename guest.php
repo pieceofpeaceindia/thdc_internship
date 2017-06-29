@@ -13,10 +13,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
                     <li class="nav-item my-2 my-lg-0">
-                        <a class="nav-link" href="guests.php" style="font-size:18px;">Guests</a>
+                        <a class="nav-link" href="guest.php" style="font-size:18px;">Guests</a>
                     </li>
                     <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link" href="eventss.php" style="font-size:18px;">Events</a>
@@ -38,10 +38,14 @@
 	        </div>
 	        </div>
 	        <br>
+	        <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">INVITED GUEST
+            </nav>
 	    	<div class="table-responsive" id="guests"> 
                
             </div>     
-            <hr><hr>
+            <hr>
+            <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">REQUESTED PEOPLE'S DETAILS
+            </nav>
             <div class="table-responsive" id="applied">
 
             </div> 
@@ -82,93 +86,5 @@
    
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script src="main.js"></script> -->
+    <script src="main.js"></script>
 </html>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-	fetch_guest();
-	fetch_appply_guest();	
-		function fetch_guest(){
-			var action="select";
-			$.ajax({
-				url: "updateautomatic.php",
-				method: "POST",
-				data:{action:action},
-				success:function(data){
-					$('#action').text("Add");
-					$('#guests').html(data);
-				}
-			});
-		}
-		function fetch_appply_guest(){
-			var action="select";
-			$.ajax({
-				url: "applyguestdetails.php",
-				method: "POST",
-				data:{action:action},
-				success:function(data){
-					// $('#action').text("Add");
-					$('#applied').html(data);
-				}
-			});
-		}	
-		$("#action").click(function(){
-			var guestform = $('#guest_form');
-			if(!guestform[0].checkValidity()){
-            guestform[0].reportValidity();
-            return;
-       		}
-			var guest_name= $('#guestname').val();
-			var guest_email= $('#email').val();
-			var contact= $('#phone').val();
-			var id=$('#guest_id').val();
-			var action=$('#action').val();
-			console.log(guest_name);
-			console.log(guest_email);
-			console.log(contact);
-			$.ajax({
-				url: "action.php",
-				method:"POST",
-				data:{guest_name:guest_name,guest_email:guest_email,contact:contact,id:id,action:action},
-				success:function(result){
-					document.getElementById("msg").innerHTML=result;
-					document.getElementById('guest_form').reset();
-					// alert(result);
-					fetch_guest();
-				}
-			})
-		});
-
-		$(document).on('click', '.reject', function(){
-			var applyid= $(this).attr("id");
-			var action="reject";
-			$.ajax({
-				url:"ajax.php",
-				method:"POST",
-				data:{applyid:applyid, action:action},
-				success:function(data){
-					fetch_guest();
-					fetch_appply_guest();
-					alert(data);
-				}
-			})
-		});
-
-		$(document).on('click', '.accept', function(){
-			var applyid= $(this).attr("id");
-			var action="accept";
-			$.ajax({
-				url:"ajax.php",
-				method:"POST",
-				data:{applyid:applyid, action:action},
-				success:function(data){
-					fetch_guest();
-					fetch_appply_guest();
-					alert(data);
-				}
-			})
-		});		
-
-	});
-</script>

@@ -16,10 +16,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item my-2 my-lg-0">
-                        <a class="nav-link" href="guests.php" style="font-size:18px;">Guests</a>
-                    </li>
-                    <li class="nav-item my-2 my-lg-0">
-                        <a class="nav-link" href="eventss.php" style="font-size:18px;">Events</a>
+                        <a class="nav-link" href="guest.php" style="font-size:18px;">Guests</a>
                     </li>
                 </ul>
              </div>
@@ -35,8 +32,8 @@
                     <br>
                 </div>
             </div>
-	    	<div class="container" id="events">
-                <?php include_once"function.php"; show_all_events(); ?>
+	    	<div class="container" id="eventdetail">
+                
             </div>     
 	        <br>
 			<!-- Modal -->

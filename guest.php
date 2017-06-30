@@ -16,9 +16,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item my-2 my-lg-0">
-                        <a class="nav-link" href="guest.php" style="font-size:18px;">Guests</a>
-                    </li>
-                    <li class="nav-item my-2 my-lg-0">
                         <a class="nav-link" href="eventss.php" style="font-size:18px;">Events</a>
                     </li>
                 </ul>
@@ -26,30 +23,71 @@
         </nav>
         <hr>
         <div class="container" style="padding-top:25px;"> 
-			<div class="container">
+			
 			<div class="row justify-content-md-around">
-	        	<div class="col-4">
+	        	<div class="col">
 	        		<center>
 	        		<br>
 	        		<h5 class="text-primary">ADD NEW GUEST</h5>
-	        		<button type="submit" class="btn btn-info" data-toggle="modal" data-target="#add_guest" id="guest_modal">Add</button>
+	        		<button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#add_guest" id="guest_modal">Add</button>
 	        		</center>
 	        	</div>
 	        </div>
-	        </div>
-	        <br>
-	        <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">INVITED GUEST
-            </nav>
-	    	<div class="table-responsive" id="guests"> 
-               
-            </div>     
-            <hr>
-            <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">REQUESTED PEOPLE'S DETAILS
-            </nav>
-            <div class="table-responsive" id="applied">
+	        <hr>
+	        <div>
+			<ul class="nav nav-tabs" role="tablist">
+			    <li  class="nav-item">
+			    	<a class="nav-link text-success" data-toggle="tab" href="#confiremed_guest_list" role="tab">CONFIRMED GUEST</a>
+			    </li>
+			    <li  class="nav-item">
+			    	<a class="nav-link active text-info" data-toggle="tab" href="#pending_guest_list" role="tab">PENDING GUEST</a>
+			    </li>
+			    <li  class="nav-item">
+			    	<a class="nav-link text-warning" data-toggle="tab" href="#applied_guest_list" role="tab">REQUESTED GUEST</a>
+			    </li>
+			    <li  class="nav-item">
+			    	<a class="nav-link text-danger" data-toggle="tab" href="#declined_guest_list" role="tab">DECLINED GUEST</a>
+			    </li>
+			</ul>
+			</div>
+			<div class="tab-content">
+		        <div id="confiremed_guest_list" class="tab-pane" role="tabpanel">
+		        <hr>
+			        <nav class="navbar navbar-inverse bg-success" style="text-align: center; font-weight: bold;font-size: 20px;">CONFIREMED GUEST
+		            </nav>
+			    	<div class="table-responsive" id="guests"> 
+		               
+		            </div>
+	            </div>     
+	            
+	            <div id="pending_guest_list" class="tab-pane active" role="tabpanel">
+	            <hr>
+		            <nav class="navbar navbar-inverse bg-info" style="text-align: center; font-weight: bold;font-size: 20px;">PENDING GUEST
+		            </nav>
+		            <div class="table-responsive" id="pending">
 
-            </div> 
-	        <br>
+		            </div> 
+	            </div>
+				
+		        <div id="applied_guest_list" class="tab-pane" role="tabpanel">
+		        <hr>
+			        <nav class="navbar navbar-inverse bg-warning" style="text-align: center; font-weight: bold;font-size: 20px;">REQUESTED PEOPLE'S DETAILS
+		            </nav>
+			    	<div class="table-responsive" id="applied"> 
+		               
+		            </div>
+	            </div>     
+            
+		        <div id="declined_guest_list" class="tab-pane" role="tabpanel">
+		        <hr>
+			        <nav class="navbar navbar-inverse bg-danger" style="text-align: center; font-weight: bold;font-size: 20px;">DECLINED REQUESTS
+		            </nav>
+			    	<div class="table-responsive" id="declined"> 
+		               
+		            </div>
+		        </div>
+            </div>
+            <br>
 			<!-- Modal -->
 			<div class="modal fade" id="add_guest" tabindex="-1" role="dialog" aria-labelledby="add_guest_label" aria-hidden="true">
 				<div class="modal-dialog" role="document">

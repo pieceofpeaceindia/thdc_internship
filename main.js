@@ -1,6 +1,9 @@
 $(document).ready(function(){
     fetch_guest();
     fetch_appply_guest();
+    fetch_event_details();
+    fetch_pending_details();
+    fetch_declined_details();
     console.log("ur document is ready");
     $("#addevent").click(function(){
         console.log("i m adding event");
@@ -17,37 +20,10 @@ $(document).ready(function(){
             success: function(result){
                 console.log(result);
                 document.getElementById('event_form').reset();  
+                fetch_event_details();
                 }
         });
     });   
-
-    $("#addguest").click(function(){
-        console.log("i m adding guest");
-        var name = document.getElementById("guest_name").value;
-        var guestform = $('#guest_form');
-        if(!guestform[0].checkValidity()){
-            guestform[0].reportValidity();
-            return;
-        }
-        var dataString = 'action=addguest&'+$('#guest_form').serialize();
-
-        console.log(dataString);
-            var table = document.getElementById("guest_table");
-            var row = table.insertRow(1);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            cell1.innerHTML = name;
-            cell2.innerHTML = "PENDING";
-     $.ajax({
-        type: "POST",
-        url: "ajax.php",
-        data: dataString,
-        success: function(result){
-            console.log(result);
-            document.getElementById('guest_form').reset();
-            }
-        });
-    });
 
     $("#get_link").click(function(){
         var rsvpform =$('#rsvp_form');
@@ -115,6 +91,10 @@ $(document).ready(function(){
 
     $("#register_modal").click(function(){
         document.getElementById("msg").innerHTML='';
+        
+    });
+    $("#rsvp_modal").click(function(){
+        document.getElementById("msgrsvp").innerHTML='';
     });
 
     $("#action").click(function(){
@@ -138,8 +118,10 @@ $(document).ready(function(){
             success:function(result){
                 document.getElementById("msg").innerHTML=result;
                 document.getElementById('guest_form').reset();
-                alert(result);
                 fetch_guest();
+                fetch_pending_details();
+                fetch_appply_guest();
+                fetch_declined_details();
             }
         })
     });
@@ -154,6 +136,8 @@ $(document).ready(function(){
             success:function(data){
                 fetch_guest();
                 fetch_appply_guest();
+                fetch_pending_details();
+                fetch_declined_details();
                 alert(data);
             }
         })
@@ -169,6 +153,7 @@ $(document).ready(function(){
             success:function(data){
                 fetch_guest();
                 fetch_appply_guest();
+                fetch_pending_details();
                 alert(data);
             }
         })
@@ -180,7 +165,6 @@ $(document).ready(function(){
             method: "POST",
             data:{action:action},
             success:function(data){
-                // $('#action').text("Add");
                 $('#guests').html(data);
             }
         });
@@ -192,9 +176,45 @@ $(document).ready(function(){
             method: "POST",
             data:{action:action},
             success:function(data){
-                // $('#action').text("Add");
                 $('#applied').html(data);
             }
         });
-    }   
+    }
+
+    function fetch_event_details() {
+        var action="selectevent";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{action:action},
+            success:function(data){
+                $('#eventdetail').html(data);
+            }
+        });      
+    }
+    
+    function fetch_pending_details() {
+        var action="pendingguest";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{action:action},
+            success:function(data){
+                $('#pending').html(data);
+            }
+        });      
+    }
+     
+    function fetch_declined_details() {
+        var action="declineguest";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{action:action},
+            success:function(data){
+                $('#declined').html(data);
+            }
+        });      
+    }
+
 });

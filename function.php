@@ -357,42 +357,41 @@
 	    if ($conn->connect_error) {
 	        die("Connection failed: " . $conn->connect_error);
 	    } 
-
-	    $sql = "SELECT event_theme_name, event_date, event_venue FROM eventdetails
-	        ORDER BY event_date DESC";
-	    $result = $conn->query($sql);
-	                
-	    echo "<table class='table table-striped table-bordered'>";
-	        echo "<thead class='bg-info'>";
-	            echo "<tr>";
-	                echo "<th style='text-align: center'>"."EVENT THEME"."</th>";
-	                echo "<th style='text-align: center'>"."EVENT DTAE"."</th>";
-	                echo "<th style='text-align: center'>"."EVENT VENUE"."</th>";
-	            echo "</tr>";
-	        echo "</thead>";
-
-	        echo "<tbody style='text-align: center'>";
-	            if ($result->num_rows > 0){
-	                while($row = $result->fetch_assoc()) 
-	                {
-	                echo "<tr>";
-	                    echo "<td>";
-	                        echo $row["event_theme_name"];
-	                    echo "</td>";
-	                    echo "<td>";
-	                        echo $row["event_date"];
-	                    echo "</td>";
-	                    echo "<td>";
-	                        echo $row["event_venue"];
-	                    echo "</td>";
-	                echo "</tr>";
-	                }
-	            } else{
-	                echo "0 results";
-	            }
-	            $conn->close();
-	        echo "</tbody>";
-	    echo "</table>";
+	    $outpu ='';
+	    $sql = "SELECT id,event_theme_name, event_date, event_venue FROM eventdetails
+	        	ORDER BY event_date DESC";
+	    $result = $conn->query($sql);            
+	    $outpu .='
+    			<table class="table table-striped table-bordered">
+        			<thead class="bg-info">
+            			<tr>
+			                <th style="text-align: center">EVENT THEME</th>
+			                <th style="text-align: center">EVENT DTAE</th>
+			                <th style="text-align: center">EVENT VENUE</th>
+			                <th style="text-align: center">UPDATE / DELETE</th>
+			            </tr>
+			        </thead>
+					<tbody style="text-align: center">';
+            if ($result->num_rows > 0){
+                while($row = $result->fetch_assoc()) 
+                {
+                $outpu .='<tr>
+	                    	<td>'.$row["event_theme_name"].'</td>
+	                    	<td>'.$row["event_date"].'</td>
+	                    	<td>'.$row["event_venue"].'</td>
+	                    	<td><button type="button" class="update btn btn-warning" data-toggle="modal" data-target="#update_event" id="'.$row["id"].'">UPDATE</button>&nbsp;
+	                    		<button type="button" class="delete btn btn-danger" id="'.$row["id"].'">DELETE</button></td>;
+		                  </tr>';
+                }
+            } else{
+                $outpu .='<tr>
+            				<td colspan="4">NO DATA FOUND</td>
+            			  </tr>';	
+            }
+              $outpu .='</tbody>
+            		</table>';
+            echo $outpu ;
+            $conn->close();
 	}
 
 	function decline_request(){
@@ -590,4 +589,54 @@
 			}
 		}	
 	}
+
+	function update_event_details()
+	{
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		}
+		$updateid= mysqli_real_escape_string($conn, $_POST["updateid"]);
+		$sqls = "SELECT * FROM eventdetails WHERE id='$updateid' ";
+		$results =mysqli_query($conn,$sqls);
+		$row=mysqli_fetch_assoc($results);
+		$event_name=$row["event_theme_name"];
+		$event_date=$row["event_date"];
+		$event_venue=$row["event_venue"];
+		echo $event_name.",".$event_venue.",".$event_date.",".$updateid;
+	}
+
+	function updateevent()
+	{
+		$servername = "localhost";
+		$username = "root";
+		$password = "";
+		$dbname = "internrsvp";
+
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		if ($conn->connect_error) 
+		{
+		    die("Connection failed: " . $conn->connect_error);
+		}
+		$theme_name=$_POST['update_event_name'];
+		$date=$_POST['update_event_date'];
+		$venue=$_POST['update_event_venue'];
+		$id=$_POST['dataid'];
+		$sql = "UPDATE eventdetails
+			SET  event_theme_name='$theme_name',event_date='$date',event_venue='$venue'
+			WHERE id='$id' ";
+		if ($conn->query($sql) === TRUE) 
+		{
+			$output="Event updated successfully";
+		    die($output);
+		} else {
+		    echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+	$conn->close();
+	}
+
 ?>

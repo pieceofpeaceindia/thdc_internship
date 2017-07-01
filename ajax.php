@@ -1,7 +1,9 @@
 <?php
 	require_once "function.php";
-	if(isset($_POST["action"])){
-		switch ($_POST["action"]) {
+	if(isset($_POST["action"]))
+	{
+		switch ($_POST["action"])
+		{
 			case 'addevent':
 				print json_encode(addaevent($_POST["event_name"],$_POST["event_date"],$_POST["event_venue"]));
 				break;
@@ -36,7 +38,15 @@
 				break;
 			case 'declineguest':
 				show_decline_guest();
-				break;													
+				break;
+			case 'updateevent':
+				update_event_details($_POST["updateid"]);
+				break;
+			case 'deleteevent':
+				delete_event();
+				break;
+			case 'updateeventdetail':
+				updateevent($_POST["update_event_name"],$_POST["update_event_date"],$_POST["update_event_venue"]);																
 			default:
 				echo "invalid";
 				break;

@@ -4,7 +4,7 @@ $(document).ready(function(){
     fetch_event_details();
     fetch_pending_details();
     fetch_declined_details();
-    console.log("ur document is ready");
+    
     $("#addevent").click(function(){
         console.log("i m adding event");
         var eventform= $('#event_form');
@@ -216,5 +216,56 @@ $(document).ready(function(){
             }
         });      
     }
+
+    $(document).on('click', '.update', function(){
+        var updateid= $(this).attr("id");
+        var action="updateevent";
+        console.log(updateid);
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{updateid:updateid, action:action},
+            success:function(value){
+                var data = value.split(",");
+                $('#update_event_name').val(data[0]);
+                $('#update_event_date').val(data[2]);
+                $('#update_event_venue').val(data[1]);
+                $('#dataid').val(data[3]);
+            }
+        })
+    }); 
+
+    $(document).on('click', '.delete', function(){
+        var deleteid= $(this).attr("id");
+        var action="deleteevent";
+        $.ajax({
+            url:"ajax.php",
+            method:"POST",
+            data:{deleteid:deleteid, action:action},
+            success:function(data){
+                fetch_event_details();
+            }
+        })
+    }); 
+
+    $("#updateevent").click(function(){
+        console.log("i m adding event");
+        var eventform= $('#event_update_form');
+        if(!eventform[0].checkValidity()){
+            eventform[0].reportValidity();
+            return;
+        }
+        var dataString = 'action=updateeventdetail&'+$('#event_update_form').serialize();
+        $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: dataString,
+            success: function(result){
+                console.log(result);
+                document.getElementById('event_update_form').reset();  
+                fetch_event_details();
+                }
+        });
+    });
 
 });

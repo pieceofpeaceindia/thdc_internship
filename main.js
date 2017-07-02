@@ -237,12 +237,14 @@ $(document).ready(function(){
 
     $(document).on('click', '.delete', function(){
         var deleteid= $(this).attr("id");
+        console.log(deleteid);
         var action="deleteevent";
         $.ajax({
             url:"ajax.php",
             method:"POST",
             data:{deleteid:deleteid, action:action},
             success:function(data){
+                console.log(data);
                 fetch_event_details();
             }
         })

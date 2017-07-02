@@ -43,10 +43,15 @@
 				update_event_details($_POST["updateid"]);
 				break;
 			case 'deleteevent':
-				delete_event();
+				delete_event($_POST["deleteid"]);
 				break;
 			case 'updateeventdetail':
-				updateevent($_POST["update_event_name"],$_POST["update_event_date"],$_POST["update_event_venue"]);																
+				updateevent($_POST["update_event_name"],$_POST["update_event_date"],$_POST["update_event_venue"]);				
+				break;
+			case 'confirm':
+				die("here");
+				confirm_response($_POST["nameofguest"],$_POST["emailofguest"],$_POST["noofguest"],$_POST["idofguest"]);
+				break;												
 			default:
 				echo "invalid";
 				break;

@@ -86,28 +86,28 @@
 		    die("Connection failed: " . $connb->connect_error);
 		}
 		$email_guest=@$_POST['email_guest'];
-		if (!filter_var($email_guest, FILTER_VALIDATE_EMAIL)) {
-		  $emailErr = "Invalid email format"; 
-		  die($emailErr);
-		}
-		$q= "SELECT email,guestname
-			FROM guestdetails
+		$q= "SELECT * FROM guestdetails
 			WHERE email='$email_guest' ";
+		$p= "SELECT * FROM guestdetails
+			WHERE guestrespone='CONFIRM' AND email='$email_guest' ";
+		$resultofp=mysqli_query($connb,$p);
+		if(mysqli_num_rows($resultofp)>0){
+			die("YOU ARE ALREADY RESPOND TO US");
+		}				
 		$result=mysqli_query($connb,$q);
 		if (mysqli_num_rows($result)>0)  {
-			$confirm_code=md5(uniqid(rand()));
-			
-			$x=urlencode($confirm_code);
-			
-
-			if ($connb->query($sqlb) === TRUE) {
-				$row = $result->fetch_assoc();
-			   	die("THANK YOU FOR YOUR PRECIOUS TIME TO RESPONSE TO US");	
-			}else{
-						echo "Error: " . $sqlb . "<br>" . $connb->error;
-			}
+			$row = $result->fetch_assoc();
+			$confirmcode=md5(uniqid(rand()));
+			// $key="hash121015@+-*/";
+			$guestemail=$row["email"];
+			$encryptedconfirmcode=base64_encode($confirmcode);
+			echo "<a target='_blank' href='http://localhost/internshiprsvp/rsvp.php/?passkey=$encryptedconfirmcode'>Click Here to Confirm Details</a>";
+			$updatequery="UPDATE guestdetails
+							SET random_token='$confirmcode' 
+							WHERE email='$email_guest' ";
+			mysqli_query($connb,$updatequery);				
 		} else {
-			 die("THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME");
+			 echo "THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME";
 		}		
 		$connb->close();	
 	}
@@ -453,28 +453,7 @@
 		mysqli_query($conna,$sqlb);						
 		$conna->close();
 	}	
-
-	function my_encrypt($data, $key) {
-	    // Remove the base64 encoding from our key
-	    $encryption_key = base64_decode($key);
-	    // die($encryption_key);
-	    // Generate an initialization vector
-	    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-	    // Encrypt the data using AES 256 encryption in CBC mode using our encryption key and initialization vector.
-	    $encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
-	    // die($encrypted);
-	    // The $iv is just as important as the key for decrypting, so save it with our encrypted data using a unique separator (::)
-	    return base64_encode($encrypted . '::' . $iv);
-	}
- 
-	function my_decrypt($data, $key) {
-	    // Remove the base64 encoding from our key
-	    $encryption_key = base64_decode($key);
-	    // To decrypt, split the encrypted data from our IV - our unique separator used was "::"
-	    list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
-	    return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
-	}
-
+	
 	function show_pending_guest()
 	{
 		$servername = "localhost";
@@ -637,6 +616,20 @@
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 			}
 	$conn->close();
+	}
+
+	function delete_event(){
+		$servername="localhost";
+		$username="root";
+		$password="";
+		$dbname="internrsvp";
+		$conn=new mysqli($servername, $username,$password,$dbname);
+		$deleteid= mysqli_real_escape_string($conn, $_POST["deleteid"]);
+		$deleteevent = "DELETE FROM eventdetails WHERE id='$deleteid' ";
+		if ($conn->query($deleteevent)===TRUE){
+			echo "EVENT DELETE SUCCESSFULLY";
+		}
+	$conn->close();	
 	}
 
 ?>

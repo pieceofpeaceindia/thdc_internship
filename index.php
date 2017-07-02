@@ -35,10 +35,11 @@
 			    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 			    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
 			    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
 			</ol>
 		  	<div class="carousel-inner" role="listbox">
 		    	<div class="carousel-item active">
-		    		<img class="d-block img-fluid" src="8.jpg" alt="First slide" style="width:100%;height:500px;">
+		    		<img class="d-block img-fluid" src="logo.png" alt="First slide" style="width:100%;height:500px;">
 		    	</div>
 			    <div class="carousel-item">
 			    	<img class="d-block img-fluid" src="1.jpg" alt="Second slide" style="width:100%;height:500px;">
@@ -56,8 +57,11 @@
 			    	<img class="d-block img-fluid" src="6.jpg" alt="Sixth slide" style="width:100%;height:500px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="4.jpg" alt="Third slide" style="width:100%;height:500px;">
-			    </div>				    				    				    				    
+			    	<img class="d-block img-fluid" src="4.jpg" alt="Seventh slide" style="width:100%;height:500px;">
+			    </div>
+			    <div class="carousel-item">
+			    	<img class="d-block img-fluid" src="8.jpg" alt="Eighth slide" style="width:100%;height:500px;">
+			    </div>			        				    
 			</div>
 		  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 		    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -121,10 +125,9 @@
 		        		</button>
 		      		</div>
 		      		<div class="modal-body">
-		      			<p id="msgrsvp"></p>
 		      			<form class="form-group" id="rsvp_form">
 		        			<input type="email" placeholder="E-mail" name="email_guest" id="email_guest" required>
-		        			<p id="validate_email" class="text-danger"></p>
+		        			<p id="msgrsvp"></p>
 		        		</form>
 		      		</div>
 		      		<div class="modal-footer">

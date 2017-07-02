@@ -29,7 +29,7 @@
         		<center>
         		<br>
         		<h5 class="text-primary">ADD NEW GUEST</h5>
-        		<button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#add_guest" id="guest_modal">Add</button>
+        		<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#add_guest" id="guest_modal">Add</button>
         		</center>
         	</div>
         </div>

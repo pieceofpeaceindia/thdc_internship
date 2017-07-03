@@ -19,7 +19,7 @@
 		if ($conn->query($sql) === TRUE) 
 		{
 			$output="Event added successfully";
-		    die($output);
+		    echo $output;
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 			}
@@ -180,7 +180,7 @@
 			// echo "Data is already registered";
 			die("Alread Registered");
 		}	
-		$sqlq= "INSERT INTO applyguests(apply_email,apply_name,apply_number) VALUES('$email','$name','$number')";
+		$sqlq= "INSERT INTO applyguests(apply_email,apply_name,apply_number,status) VALUES('$email','$name','$number','REQUESTED')";
 
 		if ($connd->query($sqlq) === TRUE) {
 			$output="THANK YOU FOR REGISTER WE WILL SHORTLY CONNECT TO YOU";
@@ -406,21 +406,23 @@
 		    die("Connection failed: " . $conna->connect_error);
 		}
 		$applyd= mysqli_real_escape_string($conna, $_POST["applyid"]);
-		$sql= "SELECT apply_id,apply_name,apply_email,apply_number
-				FROM applyguests
+		$sql= "SELECT * FROM applyguests
 				WHERE apply_id='$applyd' ";
 		$result=mysqli_query($conna,$sql);
 		$row=mysqli_fetch_assoc($result);
 		$name =$row["apply_name"];
 		$email=$row["apply_email"];
 		$number=$row["apply_number"];
-		$sql8 = "INSERT INTO rejectedguest (reject_guest_name,reject_guest_email,reject_guest_number) 
-				VALUES('$email', '$name', '$number')";		
+		$status=$row["status"];
+		if($status==="REQUESTED"){
+		$sql8= "UPDATE applyguests
+				SET status='DECLINE'
+				WHERE apply_id='$applyd'";		
 		mysqli_query($conna,$sql8);		
-		$sqlb ="DELETE FROM applyguests
-				WHERE apply_id='$applyd'";
-		mysqli_query($conna,$sqlb);		
-		echo $name." request has been rejected";	
+		echo $name." request has been rejected";
+		}else{
+			echo $name." already Rejected";
+		}	
 		$conna->close();
 	}		
  
@@ -514,59 +516,59 @@
 	}
 
 	function show_decline_guest(){
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "internrsvp";
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		} 
-		$output = ''; 
-		$procedure = "
-			CREATE PROCEDURE selectdeclineguest()
-			BEGIN  
-				SELECT reject_guest_email,reject_guest_name,reject_guest_number FROM rejectedguest ORDER BY id DESC;
-			END;
-		";
-		if(mysqli_query($conn, "drop PROCEDURE IF EXISTS selectdeclineguest")){
-			if (mysqli_query($conn,$procedure)) {
-				$query ="CALL selectdeclineguest()";
-				$result1= mysqli_query($conn,$query);
-				$output .='
-						<table class="table table-bordered table-striped table-fixed">
-							<thead class="bg-secondary">
-								<tr>	
-									<th width="20%">Name</th>
-									<th width="20%">Email</th>
-									<th width="20%">Contact No</th>
-								</tr>
-							</thead>
-							<tbody>	
-				';
-				if (mysqli_num_rows($result1)>0) {
-					while ($row=mysqli_fetch_array($result1)) {
-						$output .='
-								<tr>
-									<td>'.$row["reject_guest_name"].'</td>
-									<td>'.$row["reject_guest_email"].'</td>
-									<td>'.$row["reject_guest_number"].'</td>
-								</tr>
-						';
-					}
-				}else{
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "";
+		// $dbname = "internrsvp";
+		// $conn = new mysqli($servername, $username, $password, $dbname);
+		// if ($conn->connect_error) {
+		//     die("Connection failed: " . $conn->connect_error);
+		// } 
+		// $output = ''; 
+		// $procedure = "
+		// 	CREATE PROCEDURE selectdeclineguest()
+		// 	BEGIN  
+		// 		SELECT reject_guest_email,reject_guest_name,reject_guest_number FROM rejectedguest ORDER BY id DESC;
+		// 	END;
+		// ";
+		// if(mysqli_query($conn, "drop PROCEDURE IF EXISTS selectdeclineguest")){
+		// 	if (mysqli_query($conn,$procedure)) {
+		// 		$query ="CALL selectdeclineguest()";
+		// 		$result1= mysqli_query($conn,$query);
+		// 		$output .='
+		// 				<table class="table table-bordered table-striped table-fixed">
+		// 					<thead class="bg-secondary">
+		// 						<tr>	
+		// 							<th width="20%">Name</th>
+		// 							<th width="20%">Email</th>
+		// 							<th width="20%">Contact No</th>
+		// 						</tr>
+		// 					</thead>
+		// 					<tbody>	
+		// 		';
+		// 		if (mysqli_num_rows($result1)>0) {
+		// 			while ($row=mysqli_fetch_array($result1)) {
+		// 				$output .='
+		// 						<tr>
+		// 							<td>'.$row["reject_guest_name"].'</td>
+		// 							<td>'.$row["reject_guest_email"].'</td>
+		// 							<td>'.$row["reject_guest_number"].'</td>
+		// 						</tr>
+		// 				';
+		// 			}
+		// 		}else{
 
-					$output .='
-								<tr>
-									<td colspan="5">No Data Found</td>
-								</tr>
-					';
-				}
-				$output .='</tbody>
-						</table>';
-				echo $output;
-			}
-		}	
+		// 			$output .='
+		// 						<tr>
+		// 							<td colspan="5">No Data Found</td>
+		// 						</tr>
+		// 			';
+		// 		}
+		// 		$output .='</tbody>
+		// 				</table>';
+		// 		echo $output;
+		// 	}
+		// }	
 	}
 
 	function update_event_details()
@@ -630,6 +632,27 @@
 			echo "EVENT DELETE SUCCESSFULLY";
 		}
 	$conn->close();	
+	}
+
+	function do_rsvp(){
+		$servername="localhost";
+		$username="root";
+		$password="";
+		$dbname="internrsvp";
+		$conn=new mysqli($servername, $username,$password,$dbname);
+		if ($conn->connect_error) 
+			{
+			    die("Connection failed: " . $conn->connect_error);
+			}	
+		$id_guest=$_POST['guestid'];	
+		$updatestatus=" UPDATE guestdetails
+						SET guestrespone='CONFIRM'
+						WHERE id='$id_guest' ";				
+		if(mysqli_query($conn,$updatestatus)===TRUE){
+			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED</h4>";
+		}else{
+			echo "error";
+		}	
 	}
 
 ?>

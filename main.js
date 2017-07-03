@@ -3,7 +3,6 @@ $(document).ready(function(){
     fetch_appply_guest();
     fetch_event_details();
     fetch_pending_details();
-    fetch_declined_details();
     
     $("#addevent").click(function(){
         console.log("i m adding event");
@@ -97,6 +96,10 @@ $(document).ready(function(){
         document.getElementById("msgrsvp").innerHTML='';
     });
 
+    $("#guest_modal").click(function(){
+        document.getElementById("msg").innerHTML='';
+    });
+
     $("#action").click(function(){
         var guestform = $('#guest_form');
         if(!guestform[0].checkValidity()){
@@ -121,7 +124,7 @@ $(document).ready(function(){
                 fetch_guest();
                 fetch_pending_details();
                 fetch_appply_guest();
-                fetch_declined_details();
+                // fetch_declined_details();
             }
         })
     });
@@ -137,7 +140,6 @@ $(document).ready(function(){
                 fetch_guest();
                 fetch_appply_guest();
                 fetch_pending_details();
-                fetch_declined_details();
                 alert(data);
             }
         })
@@ -188,7 +190,7 @@ $(document).ready(function(){
             method:"POST",
             data:{action:action},
             success:function(data){
-                $('#eventdetail').html(data);
+                $('#event_details_div').html(data);
             }
         });      
     }
@@ -205,17 +207,17 @@ $(document).ready(function(){
         });      
     }
      
-    function fetch_declined_details() {
-        var action="declineguest";
-        $.ajax({
-            url:"ajax.php",
-            method:"POST",
-            data:{action:action},
-            success:function(data){
-                $('#declined').html(data);
-            }
-        });      
-    }
+    // function fetch_declined_details() {
+    //     var action="declineguest";
+    //     $.ajax({
+    //         url:"ajax.php",
+    //         method:"POST",
+    //         data:{action:action},
+    //         success:function(data){
+    //             $('#declined').html(data);
+    //         }
+    //     });      
+    // }
 
     $(document).on('click', '.update', function(){
         var updateid= $(this).attr("id");
@@ -266,8 +268,7 @@ $(document).ready(function(){
                 console.log(result);
                 document.getElementById('event_update_form').reset();  
                 fetch_event_details();
-                }
+            }
         });
     });
-
 });

@@ -5,6 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css">
+    	.btn:hover{
+    		cursor: pointer;
+    	}
+    	a:hover{
+    		cursor: pointer;
+    		background-color:#AAB5FE;
+    	}
+    </style>    
 </head>
 
 <body>
@@ -33,9 +42,9 @@
         		</center>
         	</div>
         </div>
-        <hr>
+        <br>
         <div>
-		<ul class="nav nav-tabs" role="tablist">
+		<ul class="nav nav-tabs" role="tablist" style="width:80%;">
 		    <li  class="nav-item">
 		    	<a class="nav-link text-success" data-toggle="tab" href="#confiremed_guest_list" role="tab">CONFIRMED GUEST</a>
 		    </li>
@@ -44,9 +53,6 @@
 		    </li>
 		    <li  class="nav-item">
 		    	<a class="nav-link text-warning" data-toggle="tab" href="#applied_guest_list" role="tab">REQUESTED GUEST</a>
-		    </li>
-		    <li  class="nav-item">
-		    	<a class="nav-link text-danger" data-toggle="tab" href="#declined_guest_list" role="tab">DECLINED GUEST</a>
 		    </li>
 		</ul>
 		</div>
@@ -77,15 +83,6 @@
 	               
 	            </div>
             </div>     
-        
-	        <div id="declined_guest_list" class="tab-pane" role="tabpanel">
-	        <hr>
-		        <nav class="navbar navbar-inverse bg-danger" style="text-align: center; font-weight: bold;font-size: 20px;">DECLINED REQUESTS
-	            </nav>
-		    	<div class="table-responsive" id="declined"> 
-	               
-	            </div>
-	        </div>
         </div>
         <br>
 		<!-- Modal -->

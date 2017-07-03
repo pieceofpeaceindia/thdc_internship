@@ -5,6 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css">
+    	.btn:hover{
+    		cursor: pointer;
+    	}
+    	a:hover{
+    		cursor: pointer;
+    		background-color:#AAB5FE;
+    	}
+    </style>    
 </head>
 
 <body>
@@ -12,6 +21,10 @@
         <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
     </nav>
 	<?php
+		$output='';
+		$output .='<div class="card text-center">
+						<img class="card-img-top" src="logo.png" alt="Card image cap" style="width: 20rem; margin:auto;">';
+
 		// $key="hash121015@+-*/";
 		if(isset($_GET["passkey"])){
 			$recievedcode=$_GET['passkey'];
@@ -32,34 +45,41 @@
 					WHERE random_token='$decryptedcode' ";		 		
 			$result=mysqli_query($conn,$sql);
 			$row = $result->fetch_assoc();
-			$updatestatus=" UPDATE guestdetails
-							SET guestrespone='CONFIRM'
-							WHERE random_token='$decryptedcode' ";
-			$resultupdate=mysqli_query($conn,$updatestatus);
-			$output .='<div class="card text-center">
-							<img class="card-img-top" src="logo.png" alt="Card image cap" style="width: 20rem; margin:auto;">
-							<h4 class="card-title">THANK YOU</h4>
-							<p class="card-text text-primary">Mr.'.$row["guestname"].' for your precious time to response to us, see you soon.<p>
+			// $updatestatus=" UPDATE guestdetails
+			// 				SET guestrespone='CONFIRM'
+			// 				WHERE random_token='$decryptedcode' ";
+			// $resultupdate=mysqli_query($conn,$updatestatus);
+				$output .='<h4 class="card-title text-center">THANK YOU</h4>
+							<p class="card-text text-primary text-center">'.$row["guestname"].' for your precious time to response to us, please confirm your details<p>
 							<div class="card-block">
-							   	<a class="btn btn-success" href="http://localhost/internshiprsvp/index.php">HOME</a>
+								<form id="confirm_details_form" class="text-center">
+									<label class="text-danger">NAME:</label>
+									<br>
+									<input type="text" id="confirm_name" name="confirm_name" value="'.$row["guestname"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12">
+									<br>
+									<label class="text-danger">E-MAIL:</label>
+									<br>
+									<input type="email" id="confirm_nemail" name="confirm_email" value="'.$row["email"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12">
+									<br>
+									<label class="text-danger">CONTACT NUMBER:	</label>
+									<br>
+									<input type="tel" id="confirm_phone" name="confirm_phone" value="'.$row["phone"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12">
+									<br>
+									<input type="hidden" id="guestid" name="guestid" value="'.$row["id"].'">
+									<input type="button" class="btn btn-success" id="confirm_rsvp" value="RSVP">
+								</form>
+								<p id="confirm_msg"></p>
 							</div>
-							</center>
-						</div>';
-			echo $output;			
+						</div>';			
 		}else {
-			$outputa='';
-			$outputa .='<div class="card text-center">
-							<img class="card-img-top" src="logo.png" alt="Card image cap" style="width: 20rem; margin:auto;">
-							<h4 class="card-title text-danger">WARNING</h4>
+			$output .='<h4 class="card-title text-danger">WARNING</h4>
 							<p class="card-text text-warning">DONT TRY TO BE SMART AND SPOOF OUR WEBSITE<p>
 							<div class="card-block">
 							   	<a class="btn btn-success" href="http://localhost/internshiprsvp/index.php">HOME</a>
 							</div>
-							</center>
-						</div>';
-			echo $outputa;			
+						</div>';			
 		}
-		
+		echo $output;
 	?>		  
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -67,4 +87,27 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+    $("#confirm_rsvp").click(function(){
+        var confirmform=$('#confirm_details_form');
+        if(!confirmform[0].checkValidity()){
+            confirmform[0].reportValidity();
+            return;
+        }
+        var confirmdata='action=dorsvp&'+$('#confirm_details_form').serialize();
+        console.log(confirmdata);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/internshiprsvp/ajax.php",
+            data:confirmdata,
+            success: function(result){
+                document.getElementById('confirm_details_form').reset();
+                alert(result);
+                $('#confirm_msg').html(result);
+            }
+        })
+    });
+});
+</script>
 </html>

@@ -51,6 +51,9 @@
 			case 'confirm':
 				die("here");
 				confirm_response($_POST["nameofguest"],$_POST["emailofguest"],$_POST["noofguest"],$_POST["idofguest"]);
+				break;
+			case 'dorsvp':
+				do_rsvp($_POST["confirm_name"],$_POST["confirm_email"],$_POST["confirm_phone"],$_POST["guestid"]);
 				break;												
 			default:
 				echo "invalid";

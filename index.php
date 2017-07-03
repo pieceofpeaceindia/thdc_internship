@@ -5,6 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css">
+    	.btn:hover{
+    		cursor: pointer;
+    	}
+    	a:hover{
+    		cursor: pointer;
+    		background-color:#AAB5FE;
+    	}
+    </style>
 </head>
 
 <body>
@@ -39,28 +48,28 @@
 			</ol>
 		  	<div class="carousel-inner" role="listbox">
 		    	<div class="carousel-item active">
-		    		<img class="d-block img-fluid" src="logo.png" alt="First slide" style="width:100%;height:500px;">
+		    		<img class="d-block img-fluid" src="logo.png" alt="First slide" style="width:100%;height:400px;">
 		    	</div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="1.jpg" alt="Second slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="1.jpg" alt="Second slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="2.jpg" alt="Third slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="2.jpg" alt="Third slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="3.jpg" alt="Fourth slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="3.jpg" alt="Fourth slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="9.jpg" alt="Fifth slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="9.jpg" alt="Fifth slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="6.jpg" alt="Sixth slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="6.jpg" alt="Sixth slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="4.jpg" alt="Seventh slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="4.jpg" alt="Seventh slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="8.jpg" alt="Eighth slide" style="width:100%;height:500px;">
+			    	<img class="d-block img-fluid" src="8.jpg" alt="Eighth slide" style="width:100%;height:400px;">
 			    </div>			        				    
 			</div>
 		  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

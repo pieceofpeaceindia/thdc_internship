@@ -5,6 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style type="text/css">
+    	.btn:hover{
+    		cursor: pointer;
+    	}
+    	a:hover{
+    		cursor: pointer;
+    		background-color:#AAB5FE;
+    	}
+    </style>    
 </head>
 
 <body>
@@ -32,9 +41,7 @@
                 <br>
             </div>
         </div>   
-    	<div class="container table-responsive" id="eventdetail">
-            
-        </div>     
+    	<div class="container table-responsive" id="event_details_div"></div>
         <br>
 		<!-- Modal -->
 		<div class="modal fade" id="add_event" tabindex="-1" role="dialog" aria-labelledby="add_event_label" aria-hidden="true">

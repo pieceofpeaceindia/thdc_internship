@@ -5,13 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     	.btn:hover{
     		cursor: pointer;
     	}
-    	a:hover{
-    		cursor: pointer;
-    		background-color:#AAB5FE;
+    	.carousel-control-prev:hover{
+    		background-color: transparent;
+    	}
+    	.carousel-control-next:hover{
+    		background-color: transparent;
     	}
     </style>
 </head>
@@ -21,20 +24,28 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
+        <a class="navbar-brand btn btn-primary" href="http://coloredcow.com" target="_blank" style="font-size:20px;">ColoredCow</a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link" data-toggle="modal" data-target="#guestpage_link">Guests</a>
+                    <a class="nav-link btn btn-primary"  href="guest.php">Guests</a>
                 </li>
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link" data-toggle="modal" data-target="#eventpage_link">Events</a>
-                </li>
+                    <a class="nav-link btn btn-primary" href="eventss.php">Events</a>
+                </li>              
             </ul>
          </div>
     </nav>
     <br>
     <div class="container" style="padding-top:50px;">
+        <div class="container">
+    		<hr>
+    		<center>
+    			<h3 style="font-family:'courier'; font-weight: bold; color:red">&quot;CREATING MEMORIES TOGETHER&quot;</h3>
+    			<h3 style="font-family:'courier'; font-weight: bold; color:red">SOIREE-<?php include_once"function.php"; fetch_month();?></h3>
+    		<center>
+    		<hr>
+    	</div>
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -82,28 +93,8 @@
 		  	</a>
 		</div>
      	<hr>
-<!--         	<div class="container" style="border-left:2px solid #CC9900;">
-        		<h3 style="font-family: 'courier';color:#993333;">About Us</h3>
-        	<div>
-        		<p style="font-family:monospace ;font-size: 18px;color:#999900;">ColoredCow is a problem solving company; we solve business problems through technology. We center the solutions around our clients and the people their business affects. Our software products and services grow business when we make connection at the heart by making empathy the main element. We believe in providing long lasting solutions that we can share as success stories. A colored cow would always stand out from the crowd; we do justice to our name by reflecting the same in our thoughts and in the way we work.</p>
-    		</div>
-    	</div>
-    	<hr> -->
-    	<div class="container" class="container" style="border-left:2px solid #999900;">	
-    			<h3 style="font-family: 'courier';color:#993333">About &quot;SOIREE&quot;</h3>
-        	<div>	
-        		<p style="font-family:monospace;font-size: 18px;color:#CC9900;">We at ColoredCow celebrate conversations. Conversations that stir our soul and are more than a blur in this worldly rumble. With that aim we started to build a tribe of people who resonate with the thought. we invited our friends who have been part of our journey to toast the enriching concept of traveling. In midst of music, food, laughter, dance and conversations we relived our happy travel memories again.The Tribe meets first Saturday of every month to carry forward the love for conversations, and this feeling was enhanced this time with the theme- Love! Sitting down on colorful mattresses, under the moonlight blanket of stars, we shared a lovely evening consuming food, music and conversations.</p>
-    		</div>
-    	</div>
-    	<div class="container">
-    		<hr>
-    		<center>
-    			<h3 style="font-family:'courier'; font-weight: bold; color:red">&quot;CREATING MEMORIES TOGETHER&quot;</h3>
-    			<h3 style="font-family:'courier'; font-weight: bold; color:red">SOIREE-JULY</h3>
-    		<center>
-    		<hr>
-    	</div>
-    	<div class="container-fluid">
+    	<div class="container-fluid" >
+    			<h4 class="text-center text-info" style="font-family:courier;"><strong>Upcoming &quot;SOIREE&quot; Details</strong></h4>
 				<?php include_once"function.php"; current_event(); ?>
         </div>
         <div class="row justify-content-md-around">
@@ -123,6 +114,13 @@
         	</div>
         </div>
 		<hr>
+		<div class="container" class="container" style="border-left:2px solid #999900;">	
+    			<h3 style="font-family: 'courier';color:#993333;font-weight:bold;">About &quot;SOIREE&quot;</h3>
+        	<div>	
+        		<p style="font-family:monospace;font-size: 18px;color:#006600;">We at ColoredCow celebrate conversations. Conversations that stir our soul and are more than a blur in this worldly rumble. With that aim we started to build a tribe of people who resonate with the thought. we invited our friends who have been part of our journey to toast the enriching concept of traveling. In midst of music, food, laughter, dance and conversations we relived our happy travel memories again.The Tribe meets first Saturday of every month to carry forward the love for conversations, sitting down on colorful mattresses, under the moonlight blanket of stars, we share a lovely evening consuming food, music and conversations.</p>
+    		</div>
+    	</div>
+    	<hr>
 		<!-- Modal -->
 		<div class="modal fade" id="rsvp_modal" tabindex="-1" role="dialog" aria-labelledby="rsvp_modal_label" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -163,7 +161,7 @@
 			        		<p id="validate_name" class="text-danger"></p>
 			        		<input type="email" placeholder="Your E-mail" name="apply_email" id="apply_email" required>
 			        		<p id="validate_email" class="text-danger"></p>
-			        		<input type="tel" placeholder="Contact Number" name="apply_contact_number" id="apply_contact_number" required>
+			        		<input type="number" placeholder="Contact Number" name="apply_contact_number" id="apply_contact_number" required>
 			        		<p id="validate_no" class="text-danger"></p>
 			        	</form>	
 		      		</div>
@@ -174,58 +172,13 @@
 		    	</div>
 		  	</div>
 		</div>
+	</div>	
 
-		<div class="modal fade" id="guestpage_link" tabindex="-1" role="dialog" aria-labelledby="guestpage_label" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-		      		<div class="modal-header">
-		        		<h5 class="modal-title" id="guestpage_label">Please enter you credentials</h5>
-		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          			<span aria-hidden="true">&times;</span>
-		        		</button>
-		      		</div>
-		      		<div class="modal-body">
-		        		<input type="password" placeholder="Enter Password" name="loginpassword" id="loginpassword">
-		      		</div>
-		      		<div class="modal-body">
-		      			<p class="text-danger"><a href="forgotpassword.php">Forget Password?</a></p>
-		      		</div>
-		      		<div class="modal-footer">
-		        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        		<button type="button" class="btn btn-success" onclick="window.location.href='guest.php'" id="login">Log In</button>
-		      		</div>
-		    	</div>
-		  	</div>
-		</div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
-		<div class="modal fade" id="eventpage_link" tabindex="-1" role="dialog" aria-labelledby="eventpage_label" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-		    	<div class="modal-content">
-		      		<div class="modal-header">
-		        		<h5 class="modal-title" id="eventpage_label">Please enter you credentials</h5>
-		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          			<span aria-hidden="true">&times;</span>
-		        		</button>
-		      		</div>
-		      		<div class="modal-body">
-		        		<input type="password" placeholder="Enter Password" name="loginpassword" id="loginpassword">
-		      		</div>
-		      		<div class="modal-body">
-		      			<p class="text-danger"><a href="forgotpassword.php">Forget Password?</a></p>
-		      		</div>
-		      		<div class="modal-footer">
-		        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        		<button type="button" class="btn btn-success" onclick="window.location.href='eventss.php'" id="login">Log In</button>
-		      		</div>
-		    	</div>
-		  	</div>
-		</div>
-	</div>			
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

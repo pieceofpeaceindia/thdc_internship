@@ -18,8 +18,13 @@
 
 		if ($conn->query($sql) === TRUE) 
 		{
-			$output="Event added successfully";
-		    echo $output;
+			$outputevent="Event added successfully";
+		    echo $outputevent;
+		    $resetguest= "UPDATE guestdetails
+		    			SET guestrespone='PENDING', random_token='' ";
+		    if($conn->query($resetguest)===TRUE){
+		    	$x="done";
+		    }
 		} else {
 		    echo "Error: " . $sql . "<br>" . $conn->error;
 			}
@@ -92,7 +97,7 @@
 			WHERE guestrespone='CONFIRM' AND email='$email_guest' ";
 		$resultofp=mysqli_query($connb,$p);
 		if(mysqli_num_rows($resultofp)>0){
-			die("YOU ARE ALREADY RESPOND TO US");
+			die("<span class='text-danger'>YOUR RESPONSE IS ALREADY REGISTERED TO US</span>");
 		}				
 		$result=mysqli_query($connb,$q);
 		if (mysqli_num_rows($result)>0)  {
@@ -100,6 +105,8 @@
 			$confirmcode=md5(uniqid(rand()));
 			// $key="hash121015@+-*/";
 			$guestemail=$row["email"];
+			$guestname=$row["guestname"];
+			$guestphone=$row["phone"];
 			$encryptedconfirmcode=base64_encode($confirmcode);
 			echo "<a target='_blank' href='http://localhost/internshiprsvp/rsvp.php/?passkey=$encryptedconfirmcode'>Click Here to Confirm Details</a>";
 			$updatequery="UPDATE guestdetails
@@ -107,7 +114,7 @@
 							WHERE email='$email_guest' ";
 			mysqli_query($connb,$updatequery);				
 		} else {
-			 echo "THANK YOU, BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME";
+			 echo "<span class='text-danger'>THANK YOU !! BUT YOU ARE NOT REGISTERED TO US! HAVE A GOOD TIME</span>";
 		}		
 		$connb->close();	
 	}
@@ -202,25 +209,31 @@
 		} 
 
 		$sql = "SELECT event_theme_name, event_date, event_venue FROM eventdetails
-			ORDER BY event_date Asc";
+			ORDER BY id DESC";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) 
 			{
 		    $row = $result->fetch_assoc();
-		    	echo "<table class='table table-bordered' style='background-color: #e3f2fd;''>";
+		    	echo "<table class='table table-bordered text-center' style='font-family:monospace; background-color: #e3f2fd;'>";
 		    	echo "<thead>";
+		    	echo "</thead>";
+		    	echo "<tbody>";
 		    	echo "<tr>";
-		    	echo "<th>";
-		    		echo "THEME NAME :- ".$row["event_theme_name"];
-		   			echo "</th>";
-		   			echo "<th>";
-	    			echo "DATE :- ".$row["event_date"];
-	    			echo"</th>";
-	    			echo "<th>";
-	    			echo "EVENT VENUE :- ".$row["event_venue"];
-	    		echo "</th>";
+		    	echo "<td style='font-size:25px;'>";
+		    		echo "Theme of the &quot;SOIREE&quot; is ".$row["event_theme_name"];
+		   			echo "</td>";
+		   		echo "</tr>";
+		   		echo "<tr style='font-size:25px;'>";
+		   			echo "<td>";
+	    			echo "<i class='fa fa-calendar' aria-hidden='true'></i>&nbsp;".$row["event_date"];
+	    			echo"</td>";
 	    		echo "</tr>";
-	    		echo"</thead>";
+	    		echo "<tr style='font-size:25px;'>";
+	    			echo "<td>";
+	    			echo "<i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;".$row["event_venue"];
+	    			echo "</td>";
+	    		echo "</tr>";
+	    		echo"</tbody>";
 	    		echo "</table>";
 			} else {
 		    echo "0 results";
@@ -301,7 +314,7 @@
 		$procedure = "
 			CREATE PROCEDURE select_apply_guest()
 			BEGIN  
-				SELECT apply_id,apply_email,apply_name,apply_number FROM applyguests ORDER BY apply_id DESC;
+				SELECT * FROM applyguests ORDER BY apply_id DESC;
 			END;
 		";
 		if(mysqli_query($conn, "drop PROCEDURE IF EXISTS select_apply_guest")){
@@ -315,7 +328,8 @@
 									<th width="20%">Name</th>
 									<th width="20%">Email</th>
 									<th width="20%">Contact No</th>
-									<th colspan="2">Action</th>
+									<th width="20%">Status</th>
+									<th width="20%">Action</th>
 								</tr>
 							</thead>
 							<tbody>	
@@ -327,8 +341,9 @@
 									<td>'.$row["apply_name"].'</td>
 									<td>'.$row["apply_email"].'</td>
 									<td>'.$row["apply_number"].'</td>
-									<td><button type="button" name="add" id="'.$row["apply_id"].'" class="btn btn-success accept">Accept</button> &nbsp; 
-									<button type="button" name="reject" id="'.$row["apply_id"].'" class="btn btn-danger reject">Reject</button></td>
+									<td>'.$row["status"].'</td>
+									<td><button type="button" name="add" id="'.$row["apply_id"].'" class="btn btn-success btn-sm accept">Approve</button> &nbsp; 
+									<button type="button" name="reject" id="'.$row["apply_id"].'" class="btn btn-danger btn-sm reject">Reject</button></td>
 								</tr>
 						';
 					}
@@ -336,7 +351,7 @@
 
 					$output .='
 								<tr>
-									<td colspan="5">No Data Found</td>
+									<td colspan="5">No request yet</td>
 								</tr>
 					';
 				}
@@ -416,7 +431,7 @@
 		$status=$row["status"];
 		if($status==="REQUESTED"){
 		$sql8= "UPDATE applyguests
-				SET status='DECLINE'
+				SET status='REJECTED'
 				WHERE apply_id='$applyd'";		
 		mysqli_query($conna,$sql8);		
 		echo $name." request has been rejected";
@@ -447,7 +462,7 @@
 		$email=$row["apply_email"];
 		$number=$row["apply_number"];		
 		$sqlc = "INSERT INTO guestdetails (email,guestname,phone,guestrespone) 
-				VALUES('$email', '$name', '$number','CONFIRM')";		
+				VALUES('$email', '$name', '$number','PENDING')";		
 		mysqli_query($conna,$sqlc);		
 		echo $name." request has been accepted";
 		$sqlb ="DELETE FROM applyguests
@@ -504,7 +519,7 @@
 
 					$output .='
 								<tr>
-									<td colspan="5">No Data Found</td>
+									<td colspan="5">No pending guwsts</td>
 								</tr>
 					';
 				}
@@ -649,10 +664,101 @@
 						SET guestrespone='CONFIRM'
 						WHERE id='$id_guest' ";				
 		if(mysqli_query($conn,$updatestatus)===TRUE){
-			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED</h4>";
+			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://localhost/internshiprsvp/'>HOME</a></h4>";
 		}else{
 			echo "error";
 		}	
+	}
+
+	// function fetch_image(){
+	// 	$servername="localhost";
+	// 	$username="root";
+	// 	$password="";
+	// 	$dbname="internrsvp";
+	// 	$conn=new mysqli($servername, $username,$password,$dbname);
+	// 	$output_image='';
+	// 	if($conn->connect_error) 
+	// 		{
+	// 		    die("Connection failed: " . $conn->connect_error);
+	// 		}
+	// 	$output_image .='<table class="table table-bordered">
+	// 						<thead class="text-primary">
+	// 							<tr>
+	// 								<th style="width:60%;">IMAGE</th>
+	// 								<th style="width:40%;">CHANGE / DELETE</th>
+	// 							</tr>
+	// 						</thead>
+	// 						<tbody>';			
+	// 	$selectimage= "SELECT * FROM photos ORDER BY id DESC" ;
+	// 	if(mysqli_query($conn,$selectimage)===TRUE)
+	// 	{
+			
+	// 		$result_image=mysqli_query($conn,$selectimage);
+
+	// 		if(mysqli_num_rows($result_image)>0)
+	// 		{
+	// 			while($row=mysqli_fetch_assoc($result_image))
+	// 			{
+	// 		   $output_image .='<tr>
+	// 		   						<td style="width:60%;"></td>
+	// 		   						<td style="width:40%;"></td>
+	// 		   					</tr>';
+	// 			}
+	// 		}else
+	// 			{
+	// 			$output_image .='<tr>
+	// 								<td>NO IMAGE IS STORED IN DATABASE</td>
+	// 							</tr>';	
+	// 		}
+
+	// 	}else
+	// 		{
+	// 		echo $conn->error;
+	// 		}
+			
+	// 		$output_image .='</tbody>
+	// 					</table>';			
+			
+	// 	echo $output_image;
+	// }
+
+	// function add_image()
+	// {
+	// 	$servername="localhost";
+	// 	$username="root";
+	// 	$password="";
+	// 	$dbname="internrsvp";
+	// 	$conn=new mysqli($servername, $username,$password,$dbname);
+	// 	$output_image='';
+	// 	if($conn->connect_error) 
+	// 		{
+	// 		    die("Connection failed: " . $conn->connect_error);
+	// 		}
+	// 	$image=$_POST["images_of_event"];
+	// 	die($image);
+	// }
+	function fetch_month(){
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "internrsvp";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	} 
+
+	$sql = "SELECT event_theme_name, event_date, event_venue FROM eventdetails
+		ORDER BY id DESC";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) 
+		{
+	    $row = $result->fetch_assoc();
+	    	$date = $row["event_date"];
+			$year = date('Y', strtotime($date));
+			$month = date('F', strtotime($date));
+			echo $month;
+	}
+	$conn->close();
 	}
 
 ?>

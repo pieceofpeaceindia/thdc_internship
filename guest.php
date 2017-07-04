@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     	.btn:hover{
     		cursor: pointer;
@@ -21,11 +22,11 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
+        <a class="navbar-brand btn btn-primary" href="index.php" style="font-size:20px;"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link" href="eventss.php" style="font-size:18px;">Events</a>
+                    <a class="nav-link btn btn-primary" href="eventss.php">Events</a>
                 </li>
             </ul>
          </div>
@@ -79,7 +80,7 @@
 	        <hr>
 		        <nav class="navbar navbar-inverse bg-warning" style="text-align: center; font-weight: bold;font-size: 20px;">REQUESTED PEOPLE'S DETAILS
 	            </nav>
-		    	<div class="table-responsive" id="applied"> 
+		    	<div class="table-responsive table-sm" id="applied"> 
 	               
 	            </div>
             </div>     
@@ -102,7 +103,7 @@
 			        		<p></p>
 			        		<input type="email" placeholder="E-Mail" name="email" id="email" required>
 			        		<p></p>
-			        		<input type="tel" placeholder="Contact Number" name="phone" id="phone" required>
+			        		<input type="number" placeholder="Contact Number" name="phone" id="phone" required>
 		      		</div>
 		      		<div class="modal-footer">
 		        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -113,11 +114,11 @@
 		  	</div>
 		</div>
 	</div>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -54,7 +54,13 @@
 				break;
 			case 'dorsvp':
 				do_rsvp($_POST["confirm_name"],$_POST["confirm_email"],$_POST["confirm_phone"],$_POST["guestid"]);
-				break;												
+				break;
+			// case 'fetchimage':
+			// 	fetch_image();
+			// 	break;
+			// case 'addimage':
+			// 	add_image($_POST["images_of_event"]);
+			// 	break;													
 			default:
 				echo "invalid";
 				break;

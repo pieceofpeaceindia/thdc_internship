@@ -41,8 +41,8 @@
         <div class="container">
     		<hr>
     		<center>
-    			<h3 style="font-family:'courier'; font-weight: bold; color:red">&quot;CREATING MEMORIES TOGETHER&quot;</h3>
-    			<h3 style="font-family:'courier'; font-weight: bold; color:red">SOIREE-<?php include_once"function.php"; fetch_month();?></h3>
+    			<h3 style="font-family:'courier'; font-weight: bold; color:red;font-family:Lucida Console;">&quot;CREATING MEMORIES TOGETHER&quot;</h3>
+    			<h3 style="font-family:'courier'; font-weight: bold; color:red;">SOIREE-<?php include_once"function.php"; fetch_month();?></h3>
     		<center>
     		<hr>
     	</div>
@@ -54,15 +54,15 @@
 			    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
 			    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 			    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-			    <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="6"></li><!-- 
+			    <li data-target="#carouselExampleIndicators" data-slide-to="7"></li> -->
 			</ol>
 		  	<div class="carousel-inner" role="listbox">
 		    	<div class="carousel-item active">
 		    		<img class="d-block img-fluid" src="logo.png" alt="First slide" style="width:100%;height:400px;">
 		    	</div>
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="1.jpg" alt="Second slide" style="width:100%;height:400px;">
+			    	<img class="d-block img-fluid" src="8.jpg" alt="Second slide" style="width:100%;height:400px;">
 			    </div>
 			    <div class="carousel-item">
 			    	<img class="d-block img-fluid" src="2.jpg" alt="Third slide" style="width:100%;height:400px;">
@@ -78,10 +78,10 @@
 			    </div>
 			    <div class="carousel-item">
 			    	<img class="d-block img-fluid" src="4.jpg" alt="Seventh slide" style="width:100%;height:400px;">
-			    </div>
+			    </div><!-- 
 			    <div class="carousel-item">
-			    	<img class="d-block img-fluid" src="8.jpg" alt="Eighth slide" style="width:100%;height:400px;">
-			    </div>			        				    
+			    	<img class="d-block img-fluid" src="1.jpg" alt="Eighth slide" style="width:100%;height:400px;">
+			    </div> -->			        				    
 			</div>
 		  	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 		    	<span class="carousel-control-prev-icon" aria-hidden="true"></span>

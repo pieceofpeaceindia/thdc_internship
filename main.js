@@ -228,9 +228,10 @@ $(document).ready(function(){
             method:"POST",
             data:{updateid:updateid, action:action},
             success:function(value){
-                var data = value.split(",");
+                var data = value.split("!");
                 $('#update_event_name').val(data[0]);
                 $('#update_event_date').val(data[2]);
+                console.log(data[2]);
                 $('#update_event_venue').val(data[1]);
                 $('#dataid').val(data[3]);
             }

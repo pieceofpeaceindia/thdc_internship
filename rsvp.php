@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     	.btn:hover{
     		cursor: pointer;
@@ -17,13 +18,13 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-inverse bg-primary">
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <a class="navbar-brand" href="http://coloredcow.com" target="_blank" style="font-size:20px;color:black">ColoredCow</a>
     </nav>
 	<?php
 		$output='';
 		$output .='<div class="card text-center">
-					<img class="card-img-top" src="http://localhost/internshiprsvp/logo.png" alt="ColoredCow logo" style="width: 20rem; margin:auto;">';
+					<img class="card-img-top" src="http://localhost/internshiprsvp/logo.png" alt="ColoredCow logo" style="width: 18rem; margin:auto;">';
 
 		// $key="hash121015@+-*/";
 		if(isset($_GET["passkey"])){
@@ -44,24 +45,15 @@
 					WHERE random_token='$decryptedcode' ";		 		
 			$result=mysqli_query($conn,$sql);
 			$row = $result->fetch_assoc();
-				$output .='<h4 class="card-title text-center text-warning">THANK YOU</h4>
+				$output .='<h4 class="card-title text-center text-warning">THANK YOU !!</h4>
 							<p class="card-text text-primary text-center">'.$row["guestname"].' for your precious time to response to us<p>
 							<div class="card-block">
-								<form id="confirm_details_form" class="text-center">
-									<label class="text-danger">NAME:</label>
-									<br>
-									<input type="text" id="confirm_name" name="confirm_name" value="'.$row["guestname"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12" readonly>
-									<br>
-									<label class="text-danger">E-MAIL:</label>
-									<br>
-									<input type="email" id="confirm_nemail" name="confirm_email" value="'.$row["email"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12" readonly>
-									<br>
-									<label class="text-danger">CONTACT NUMBER:	</label>
-									<br>
-									<input type="tel" id="confirm_phone" name="confirm_phone" value="'.$row["phone"].'" class="form-group col-3 col-md-3 col-sm-6 col-xs-12" readonly>
-									<br>
+									<h2><span style="font-size:45px;"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>&nbsp;'.$row["guestname"].'</h2>
+									<h2><span style="font-size:45px;"><i class="fa fa-envelope-open-o" aria-hidden="true"></i>&nbsp;</span>'.$row["email"].'</h2>
+									<h2><span style="font-size:45px;"><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;</span>'.$row["phone"].'</h2>
+									<form id="confirm_details_form">
 									<input type="hidden" id="guestid" name="guestid" value="'.$row["id"].'">
-									<input type="button" class="btn btn-success" id="confirm_rsvp" value="RSVP">
+									<input type="button" class="btn btn-success" id="confirm_rsvp" value="CONFIRM">
 								</form>
 								<br>
 								<p id="confirm_msg"></p>

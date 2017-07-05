@@ -53,7 +53,7 @@
 				confirm_response($_POST["nameofguest"],$_POST["emailofguest"],$_POST["noofguest"],$_POST["idofguest"]);
 				break;
 			case 'dorsvp':
-				do_rsvp($_POST["confirm_name"],$_POST["confirm_email"],$_POST["confirm_phone"],$_POST["guestid"]);
+				do_rsvp($_POST["guestid"]);
 				break;
 			// case 'fetchimage':
 			// 	fetch_image();

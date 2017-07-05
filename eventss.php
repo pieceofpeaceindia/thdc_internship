@@ -42,7 +42,9 @@
                 <br>
             </div>
         </div>   
-    	<div class="container table-responsive" id="event_details_div"></div>
+    	<div class="container table-responsive" id="event_details_div">
+    		
+    	</div>
         <br>
 		<!-- Modal -->
 		<div class="modal fade" id="add_event" tabindex="-1" role="dialog" aria-labelledby="add_event_label" aria-hidden="true">

@@ -185,7 +185,7 @@
 		$resultb=mysqli_query($connd,$qury);	
 		if ((mysqli_num_rows($resulta)>0)||(mysqli_num_rows($resultb)>0))  {
 			// echo "Data is already registered";
-			die("Alread Registered");
+			die("Already Registered");
 		}	
 		$sqlq= "INSERT INTO applyguests(apply_email,apply_name,apply_number,status) VALUES('$email','$name','$number','REQUESTED')";
 
@@ -289,7 +289,7 @@
 
 					$output .='
 								<tr>
-									<td colspan="5">No Data Found</td>
+									<td colspan="5">None of your guest responed till now</td>
 								</tr>
 					';
 				}
@@ -336,6 +336,7 @@
 				';
     			if (mysqli_num_rows($result) > 0){
 					while ($row=mysqli_fetch_array($result)) {
+						if($row["status"]==="REQUESTED"){
 						$output .='
 								<tr>
 									<td>'.$row["apply_name"].'</td>
@@ -346,6 +347,17 @@
 									<button type="button" name="reject" id="'.$row["apply_id"].'" class="btn btn-danger btn-sm reject">Reject</button></td>
 								</tr>
 						';
+						}else{
+						$output .='
+								<tr>
+									<td>'.$row["apply_name"].'</td>
+									<td>'.$row["apply_email"].'</td>
+									<td>'.$row["apply_number"].'</td>
+									<td>'.$row["status"].'</td>
+									<td><button type="button" name="add" id="'.$row["apply_id"].'" class="btn btn-success btn-sm accept">Approve</button></td>
+								</tr>';							
+
+						}
 					}
 				}else{
 
@@ -374,7 +386,7 @@
 	    } 
 	    $outpu ='';
 	    $sql = "SELECT id,event_theme_name, event_date, event_venue FROM eventdetails
-	        	ORDER BY event_date DESC";
+	        	ORDER BY id DESC";
 	    $result = $conn->query($sql);            
 	    $outpu .='
     			<table class="table table-striped table-bordered">
@@ -395,12 +407,12 @@
 	                    	<td>'.$row["event_date"].'</td>
 	                    	<td>'.$row["event_venue"].'</td>
 	                    	<td><button type="button" class="update btn btn-warning" data-toggle="modal" data-target="#update_event" id="'.$row["id"].'">UPDATE</button>&nbsp;
-	                    		<button type="button" class="delete btn btn-danger" id="'.$row["id"].'">DELETE</button></td>;
+	                    		<button type="button" class="delete btn btn-danger" id="'.$row["id"].'">DELETE</button></td>
 		                  </tr>';
                 }
             } else{
                 $outpu .='<tr>
-            				<td colspan="4">NO DATA FOUND</td>
+            				<td colspan="4">No event detail present in database</td>
             			  </tr>';	
             }
               $outpu .='</tbody>
@@ -603,7 +615,7 @@
 		$event_name=$row["event_theme_name"];
 		$event_date=$row["event_date"];
 		$event_venue=$row["event_venue"];
-		echo $event_name.",".$event_venue.",".$event_date.",".$updateid;
+		echo $event_name."!".$event_venue."!".$event_date."!".$updateid;
 	}
 
 	function updateevent()
@@ -664,7 +676,7 @@
 						SET guestrespone='CONFIRM'
 						WHERE id='$id_guest' ";				
 		if(mysqli_query($conn,$updatestatus)===TRUE){
-			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://localhost/internshiprsvp/'>HOME</a></h4>";
+			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://localhost/internshiprsvp/'><i class='fa fa-check-square-o' aria-hidden='true'></i>HOME</a></h4>";
 		}else{
 			echo "error";
 		}	

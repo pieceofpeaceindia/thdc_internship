@@ -450,7 +450,7 @@
 
 					$output .='
 								<tr>
-									<td colspan="5">No pending guwsts</td>
+									<td colspan="5">No pending guests</td>
 								</tr>
 					';
 				}

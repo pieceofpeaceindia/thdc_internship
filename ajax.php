@@ -36,9 +36,6 @@
 			case 'pendingguest':
 				show_pending_guest();
 				break;
-			case 'declineguest':
-				show_decline_guest();
-				break;
 			case 'updateevent':
 				update_event_details($_POST["updateid"]);
 				break;
@@ -54,13 +51,7 @@
 				break;
 			case 'dorsvp':
 				do_rsvp($_POST["guestid"]);
-				break;
-			// case 'fetchimage':
-			// 	fetch_image();
-			// 	break;
-			// case 'addimage':
-			// 	add_image($_POST["images_of_event"]);
-			// 	break;													
+				break;												
 			default:
 				echo "invalid";
 				break;

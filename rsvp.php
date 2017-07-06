@@ -24,7 +24,7 @@
 	<?php
 		$output='';
 		$output .='<div class="card text-center">
-					<img class="card-img-top" src="http://localhost/internshiprsvp/logo.png" alt="ColoredCow logo" style="width: 18rem; margin:auto;">';
+					<img class="card-img-top" src="http://localhost/internshiprsvp/images/logo.png" alt="ColoredCow logo" style="width: 18rem; margin:auto;">';
 
 		// $key="hash121015@+-*/";
 		if(isset($_GET["passkey"])){

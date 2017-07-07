@@ -24,7 +24,7 @@
 	<?php
 		$output='';
 		$output .='<div class="card text-center">
-					<img class="card-img-top" src="http://localhost/internshiprsvp/images/logo.png" alt="ColoredCow logo" style="width: 18rem; margin:auto;">';
+					<img class="card-img-top" src="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/images/logo.png" alt="ColoredCow logo" style="width: 18rem; margin:auto;">';
 
 		// $key="hash121015@+-*/";
 		if(isset($_GET["passkey"])){
@@ -63,7 +63,7 @@
 			$output .='<h4 class="card-title text-danger">WARNING</h4>
 							<p class="card-text text-warning">ONLY SPECIFIC USER ARE AUTHORIZED TO THIS PAGE THANK YOU<p>
 							<div class="card-block">
-							   	<a class="btn btn-success" href="http://localhost/internshiprsvp/index.php">HOME</a>
+							   	<a class="btn btn-success" href="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/index.php">HOME</a>
 							</div>
 						</div>';			
 		}
@@ -87,7 +87,7 @@ $(document).ready(function(){
         console.log(confirmdata);
         $.ajax({
             type: "POST",
-            url: "http://localhost/internshiprsvp/ajax.php",
+            url: "http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/ajax.php",
             data:confirmdata,
             success: function(result){
                 document.getElementById('confirm_details_form').reset();

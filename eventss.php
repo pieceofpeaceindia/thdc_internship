@@ -22,11 +22,11 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand btn btn-primary" href="index.php" style="font-size:20px;"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a>
+        <a class="navbar-brand btn btn-primary" href="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/index.php" style="font-size:20px;"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link btn btn-primary"  href="guest.php"><span class="glyphicon glyphicon-home"></span>Guests</a>
+                    <a class="nav-link btn btn-primary"  href="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/guest.php"><span class="glyphicon glyphicon-home"></span>Guests</a>
                 </li> 
             </ul>
          </div>
@@ -110,5 +110,5 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="main.js"></script>
+<script src="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/main.js"></script>
 </html>

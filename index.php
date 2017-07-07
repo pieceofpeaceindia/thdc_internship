@@ -28,10 +28,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link btn btn-primary"  href="guest.php">Guests</a>
+                    <a class="nav-link btn btn-primary"  href="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/guest.php">Guests</a>
                 </li>
                 <li class="nav-item my-2 my-lg-0">
-                    <a class="nav-link btn btn-primary" href="eventss.php">Events</a>
+                    <a class="nav-link btn btn-primary" href="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/eventss.php">Events</a>
                 </li>              
             </ul>
          </div>
@@ -182,5 +182,5 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="main.js"></script>
+<script src="http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/main.js"></script>
 </html>

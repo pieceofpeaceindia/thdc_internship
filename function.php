@@ -90,7 +90,7 @@
 			$guestname=$row["guestname"];
 			$guestphone=$row["phone"];
 			$encryptedconfirmcode=base64_encode($confirmcode);
-			echo "<a target='_blank' href='http://localhost/internshiprsvp/rsvp.php/?passkey=$encryptedconfirmcode'>Click Here to Confirm Details</a>";
+			echo "<a target='_blank' href='http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/rsvp.php/?passkey=$encryptedconfirmcode'>Click Here to Confirm Details</a>";
 			$updatequery="UPDATE guestdetails
 							SET random_token='$confirmcode' 
 							WHERE email='$email_guest' ";

@@ -511,7 +511,7 @@
 						SET guestrespone='CONFIRM'
 						WHERE id='$id_guest' ";				
 		if(mysqli_query($conn,$updatestatus)===TRUE){
-			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://localhost/internshiprsvp/'><i class='fa fa-check-square-o' aria-hidden='true'></i>HOME</a></h4>";
+			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/index.php'><i class='fa fa-check-square-o' aria-hidden='true'></i>HOME</a></h4>";
 		}else{
 			echo "error";
 		}	

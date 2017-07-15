@@ -1,92 +1,92 @@
 $(document).ready(function(){
-    fetch_guest();
-    fetch_appply_guest();
-    fetch_event_details();
-    fetch_pending_details();
+     fetch_guest();
+     fetch_appply_guest();
+     fetch_event_details();
+     fetch_pending_details();
     
-    $("#addevent").click(function(){
-        console.log("i m adding event");
-        var eventform= $('#event_form');
-        if(!eventform[0].checkValidity()){
-            eventform[0].reportValidity();
-            return;
-        }
-        var dataString = 'action=addevent&'+$('#event_form').serialize();
-        $.ajax({
-            type: "POST",
-            url: "ajax.php",
-            data: dataString,
-            success: function(result){
-                console.log(result);
-                document.getElementById('event_form').reset();  
-                fetch_event_details();
-                }
-        });
-    });   
-
-    $("#get_link").click(function(){
-        var rsvpform =$('#rsvp_form');
-        if(!rsvpform[0].checkValidity()){
-            rsvpform[0].reportValidity();
-            return;
-        }
-        console.log(dataStringa);
-        var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
-        $.ajax({
-            type: "POST",
-            url: "ajax.php",
-            data: dataStringa,
-            success: function(result){
-                document.getElementById('rsvp_form').reset();
-                document.getElementById("msgrsvp").innerHTML=result;
-            }
-        });      
-    return false;    
-    });
-
-    $("#forget_password").click(function(){
-        console.log("forgot_password");
-        var email = $("#email_guest").val();
-        var no= $('#guest_contact_number').val();
-        var dataStringa = 'action=forgot&' + $('#forgot_password_form').serialize();
-        console.log(dataStringa);
-        if(email==''|| no==''){
-            alert("Please fill both Fields");
-        }
-        else{
-            $.ajax({
-                type: "POST",
-                url: "ajax.php",
-                data: dataStringa,
-                success: function(result){
+     $("#addevent").click(function(){
+          console.log("i m adding event");
+          var eventform= $('#event_form');
+          if(!eventform[0].checkValidity()){
+               eventform[0].reportValidity();
+               return;
+          }
+          var dataString = 'action=addevent&'+$('#event_form').serialize();
+          $.ajax({
+               type: "POST",
+               url: "ajax.php",
+               data: dataString,
+               success: function(result){
                     console.log(result);
-                    document.getElementById('email_guest').value = '';
-                    document.getElementById('guest_contact_number').value = '';
-                }
-            });
-        }
-    return false;    
-    });
+                    document.getElementById('event_form').reset();  
+                    fetch_event_details();
+                    }
+          });
+     });   
 
-    $("#register").click(function(){
-        console.log("i m applying as guest");
-        var userregister= $('#apply_form');
-        if (!userregister[0].checkValidity()) {
-            userregister[0].reportValidity();
-            return;
-        }
-        var dataString = 'action=applyguest&'+$('#apply_form').serialize();
-        console.log(dataString);
-        $.ajax({
-            type: "POST",
-            url: "ajax.php",
-            data: dataString,
-            success: function(result){
-                document.getElementById("msg").innerHTML=result;
-                document.getElementById('apply_form').reset();
-                }
-            });
-    });
+     $("#get_link").click(function(){
+          var rsvpform =$('#rsvp_form');
+          if(!rsvpform[0].checkValidity()){
+               rsvpform[0].reportValidity();
+               return;
+          }
+          console.log(dataStringa);
+          var dataStringa = 'action=rsvp&' + $('#rsvp_form').serialize();
+          $.ajax({
+               type: "POST",
+               url: "ajax.php",
+               data: dataStringa,
+               success: function(result){
+                    document.getElementById('rsvp_form').reset();
+                    document.getElementById("msgrsvp").innerHTML=result;
+               }
+          });      
+     return false;    
+     });
+
+     $("#forget_password").click(function(){
+          console.log("forgot_password");
+          var email = $("#email_guest").val();
+          var no= $('#guest_contact_number').val();
+          var dataStringa = 'action=forgot&' + $('#forgot_password_form').serialize();
+          console.log(dataStringa);
+          if(email==''|| no==''){
+               alert("Please fill both Fields");
+          }
+          else{
+               $.ajax({
+                    type: "POST",
+                    url: "ajax.php",
+                    data: dataStringa,
+                    success: function(result){
+                        console.log(result);
+                        document.getElementById('email_guest').value = '';
+                        document.getElementById('guest_contact_number').value = '';
+                    }
+               });
+          }
+     return false;    
+     });
+
+     $("#register").click(function(){
+          console.log("i m applying as guest");
+          var userregister= $('#apply_form');
+          if (!userregister[0].checkValidity()) {
+               userregister[0].reportValidity();
+               return;
+          }
+          var dataString = 'action=applyguest&'+$('#apply_form').serialize();
+          console.log(dataString);
+          $.ajax({
+               type: "POST",
+               url: "ajax.php",
+               data: dataString,
+               success: function(result){
+                    document.getElementById("msg").innerHTML=result;
+                    document.getElementById('apply_form').reset();
+                    }
+               });
+     });
 
     $("#register_modal").click(function(){
         document.getElementById("msg").innerHTML='';
@@ -241,14 +241,24 @@ $(document).ready(function(){
     $(document).on('click', '.delete', function(){
         var deleteid= $(this).attr("id");
         console.log(deleteid);
-        var action="deleteevent";
+        var action="deleteeventmodal";
+        console.log(action);
         $.ajax({
             url:"ajax.php",
             method:"POST",
             data:{deleteid:deleteid, action:action},
             success:function(data){
-                console.log(data);
-                fetch_event_details();
+                // console.log(data);
+                // fetch_event_details();
+                var data = data.split("!");
+                // $('#delete_event_name').val(data[0]);
+                document.getElementById("delete_event_name").innerHTML=data[0];
+                document.getElementById("delete_event_date").innerHTML=data[2];
+                document.getElementById("delete_event_venue").innerHTML=data[1];
+                // $('#delete_event_date').val(data[2]);
+                console.log(data[2]);
+                // $('#delete_event_venue').val(data[1]);
+                $('#dataid').val(data[3]);
             }
         })
     }); 

@@ -179,27 +179,9 @@
 		if ($result->num_rows > 0) 
 			{
 		    $row = $result->fetch_assoc();
-		    	echo "<table class='table table-bordered text-center' style='font-family:monospace; background-color: #e3f2fd;'>";
-		    	echo "<thead>";
-		    	echo "</thead>";
-		    	echo "<tbody>";
-		    	echo "<tr>";
-		    	echo "<td style='font-size:25px;'>";
-		    		echo "Theme of the &quot;SOIREE&quot; is ".$row["event_theme_name"];
-		   			echo "</td>";
-		   		echo "</tr>";
-		   		echo "<tr style='font-size:25px;'>";
-		   			echo "<td>";
-	    			echo "<i class='fa fa-calendar' aria-hidden='true'></i>&nbsp;".$row["event_date"];
-	    			echo"</td>";
-	    		echo "</tr>";
-	    		echo "<tr style='font-size:25px;'>";
-	    			echo "<td>";
-	    			echo "<i class='fa fa-map-marker' aria-hidden='true'></i>&nbsp;".$row["event_venue"];
-	    			echo "</td>";
-	    		echo "</tr>";
-	    		echo"</tbody>";
-	    		echo "</table>";
+		        echo "<span style='font-size:80px; '>" . $row["event_theme_name"]. "</span><br> <br>
+		        <span style='font-size:35px;'><i class='fa fa-calendar' style=' color:white;'aria-hidden='true'></i>&nbsp;" . $row["event_date"]. "</span><br><br> 
+		        <span style='font-size:35px;'><i class='fa fa-map-marker fa-lg' style=' color:white;' aria-hidden='true'></i>&nbsp;" . $row["event_venue"]. "</span><br><br>";
 			} else {
 		    echo "0 results";
 		}
@@ -265,7 +247,7 @@
 		$procedure = "
 			CREATE PROCEDURE select_apply_guest()
 			BEGIN  
-				SELECT * FROM applyguests ORDER BY apply_id DESC;
+				SELECT * FROM applyguests ORDER BY status DESC;
 			END;
 		";
 		if(mysqli_query($conn, "drop PROCEDURE IF EXISTS select_apply_guest")){
@@ -351,7 +333,7 @@
 	                    	<td>'.$row["event_date"].'</td>
 	                    	<td>'.$row["event_venue"].'</td>
 	                    	<td><button type="button" class="update btn btn-warning" data-toggle="modal" data-target="#update_event" id="'.$row["id"].'">UPDATE</button>&nbsp;
-	                    		<button type="button" class="delete btn btn-danger" id="'.$row["id"].'">DELETE</button></td>
+	                    		<button type="button" class="delete btn btn-danger" data-toggle="modal" data-target="#delete_event" id="'.$row["id"].'">DELETE</button></td>
 		                  </tr>';
                 }
             } else{
@@ -494,6 +476,20 @@
 	$conn->close();
 	}
 
+
+	function delete_data_fetch()
+	{
+		global $conn;
+		$deleteid= mysqli_real_escape_string($conn, $_POST["deleteid"]);
+		$sqls = "SELECT * FROM eventdetails WHERE id='$deleteid' ";
+		$results =mysqli_query($conn,$sqls);
+		$row=mysqli_fetch_assoc($results);
+		$event_name=$row["event_theme_name"];
+		$event_date=$row["event_date"];
+		$event_venue=$row["event_venue"];
+		echo $event_name."!".$event_venue."!".$event_date."!".$deleteid;	
+	}
+
 	function delete_event(){
 		global $conn;
 		$deleteid= mysqli_real_escape_string($conn, $_POST["deleteid"]);
@@ -511,7 +507,7 @@
 						SET guestrespone='CONFIRM'
 						WHERE id='$id_guest' ";				
 		if(mysqli_query($conn,$updatestatus)===TRUE){
-			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/index.php'><i class='fa fa-check-square-o' aria-hidden='true'></i>HOME</a></h4>";
+			echo "<h4 class='text-center text-success'>YOUR RESPONSE IS SUCCESSFULLY UPDATED <br><a role='button' class='btn btn-warning' href='http://ec2-52-15-245-244.us-east-2.compute.amazonaws.com/thdc_internship/'><i class='fa fa-check-square-o' aria-hidden='true'></i>HOME</a></h4>";
 		}else{
 			echo "error";
 		}	

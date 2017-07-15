@@ -39,6 +39,8 @@
 			case 'updateevent':
 				update_event_details($_POST["updateid"]);
 				break;
+			case 'deleteeventmodal':
+				delete_data_fetch($_POST["deleteid"]);
 			case 'deleteevent':
 				delete_event($_POST["deleteid"]);
 				break;
@@ -55,6 +57,9 @@
 			default:
 				echo "invalid";
 				break;
+		}		
+	}else
+		{
+			return "No Action found";
 		}
-	}
 ?>
